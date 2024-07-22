@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fxcopier
+  labels:
+    app: fxcopier
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fxcopier
+  template:
+    metadata:
+      labels:
+        app: fxcopier
+    spec:
+      containers:
+      - name: fxcopier
+        image: lokispundit/fxcopier
+        volumeMounts:
+        - mountPath: /mnt/data
+          name: restoredata
+        - mountPath: /mnt/nfs
+          name: nfs
+        - mountPath: /mnt/sshfs
+          name: sshfs
+      volumes:
+        - name: restoredata
+          hostPath:
+            path: /mnt/data
+            type: Directory
+        - name: nfs
+          hostPath:
+            path: /mnt/nfs
+            type: Directory
+        - name: sshfs
+          hostPath:
+            path: /mnt/sshfs
+            type: Directory
