@@ -10,27 +10,30 @@ Splunk can create frozen indexed data in a compressed format (journal.gz) to red
 
 Fishstix attempts to resolve these known issues by using a standalone Splunk host to : 
 
- - use NIFI to create an inventory of Splunk frozen data from a mounted
+ -  runs NIFI to create a live inventory of Splunk frozen data from a mounted
     location 
 	 - (NFS, SSHFS, S3FS supported) in Splunk (index=fx).
 	 - This inventory gives the original time ranges and index of the
     buckets so we can filter out the specific buckets to restore.
- - Determine which buckets you want from the inventory and put that
-    list in a lookup called **restorequeue.csv**
- - Run the buildqueue.py script to load the **restorequeue.csv** file into the REDIS
-    queue for copy & restore processing.
+ - the FishStix lookup builder dashboard (xml) is provided to help build a lookup file (restorequeue.csv) from the (NIFI-provided) inventory of the buckets you want to restore
+ - Use the provided fishstix.sh file to either:
+
+1. Start Copy to index _*must be run prior to Restore - data cannot be rebuild without being staged_
+2. Start Restore to index
+3. View Kubernetes Status
+4. Clear restorequeue.csv lookup file
 
 FishStix restore process
- - uses REDIS to create a queue of work to be processed
+ - uses custom REDIS queue to create a list of buckets to be processed
  - Data is restored to the restored_data_100 by default
 
- - the COPY is run by the fxcopier.yaml containers (2 replicas by default)
-	 - will read from the REDIS **copyqueue** and copy the buckets identified from
+ - the "Start Copy to index" process is run by the fxcopier.yaml containers (2 replicas by default)
+	 - these containers will read from the REDIS **copyqueue** and copy the buckets identified from
    the **restorequeue.csv** file to the staged index located at
    **/mnt/data/restored_data_100**
 	 - Progress is logged at /mnt/data/fxcopier.log
- - the RESTORE fxrestore.yaml (1 replica by default)
-	 -  read from the REDIS **restorequeue** and begin the thawing/rebuild process in the **restore_data_100** index
+ - the "Start Restore to index" process is run by fxrestore.yaml containers (5 replicas by default)
+	 - these containers read from the REDIS **restorequeue** and begin the thawing/rebuild process in the **restore_data_100** index
 	 - This can be scaled up to 5 replicas on an m5.4xlarge instance for
    maximum performance
     - Progress is logged at /mnt/data/fxrestore.log
