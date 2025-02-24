@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fxrestore
+  labels:
+    app: fxrestore
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: fxrestore
+  template:
+    metadata:
+      labels:
+        app: fxrestore
+    spec:
+      containers:
+      - name: fxrestore
+        image: splunk/splunk:9.3.2
+        lifecycle:
+          postStart:
+            exec:
+             command: ["/bin/sh", "-c", "sleep 60s; sudo pip install redis; sudo python /opt/fishstix/bin/fxrestore.py 10.202.34.225"]
+        env:
+        - name: SPLUNK_START_ARGS
+          value: --accept-license
+        - name: SPLUNK_PASSWORD
+          value: helloworld
+        volumeMounts:
+        - mountPath: /mnt/data
+          name: restoredata
+        - mountPath: /mnt/frozen_buckets
+          name: frozenbuckets
+        - mountPath: /opt/fishstix
+          name: fishstix
+      volumes:
+        - name: restoredata
+          hostPath:
+            path: /mnt/data
+            type: Directory
+        - name: frozenbuckets
+          hostPath:
+            path: /mnt/frozen_buckets
+            type: Directory
+        - name: fishstix
+          hostPath:
+            path: /opt/fishstix
+            type: Directory

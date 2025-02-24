@@ -1,0 +1,24 @@
+[app/ui]
+version = 9.2.1
+modtime = 1740000938.846324000
+
+[app/launcher]
+version = 9.2.1
+modtime = 1740000938.849074000
+
+[indexes/fx]
+owner = klg
+version = 9.4.0
+modtime = 1740420362.773131000
+
+[transforms/REPORT-fx_inventory]
+owner = klg
+version = 9.4.0
+modtime = 1740420452.924890000
+
+[props/fx_inventory/REPORT-fx_inventory]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = klg
+version = 9.4.0
+modtime = 1740420453.261784000

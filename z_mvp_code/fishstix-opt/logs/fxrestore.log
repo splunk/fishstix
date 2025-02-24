@@ -1,0 +1,219 @@
+2025-02-24 21:30:00.240838	Worker with sessionID: f33f3e70-d38b-4631-a775-020b83f5d1eb
+2025-02-24 21:30:00.240971	Initial queue state: empty=False
+2025-02-24 21:30:00.241434	Source Directory: /mnt/data/frozen_buckets/index3/db_1726679447_1726678294_172
+2025-02-24 21:30:00.241523	Bucket Id:db_1726679447_1726678294_172
+2025-02-24 21:30:00.241587	Destination Index: restored_data_100
+2025-02-24 21:30:00.241644	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1726679447_1726678294_172
+2025-02-24 21:30:00.241704	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1726679447_1726678294_172
+2025-02-24 21:30:00.243348	Worker with sessionID: a4ad4f63-e156-420d-b06e-866d44189b62
+2025-02-24 21:30:00.243458	Initial queue state: empty=False
+2025-02-24 21:30:00.243843	Source Directory: /mnt/data/frozen_buckets/index4/db_1726682406_1726681979_424
+2025-02-24 21:30:00.243942	Bucket Id:db_1726682406_1726681979_424
+2025-02-24 21:30:00.244016	Destination Index: restored_data_100
+2025-02-24 21:30:00.244084	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1726682406_1726681979_424
+2025-02-24 21:30:00.244153	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1726682406_1726681979_424
+2025-02-24 21:33:40.398766	
+2025-02-24 21:33:40.399734	Source Directory: /mnt/data/frozen_buckets/index4/db_1726681985_1726681610_423
+2025-02-24 21:33:40.399848	Bucket Id:db_1726681985_1726681610_423
+2025-02-24 21:33:40.399925	Destination Index: restored_data_100
+2025-02-24 21:33:40.399993	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1726681985_1726681610_423
+2025-02-24 21:33:40.400063	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1726681985_1726681610_423
+2025-02-24 21:33:59.378714	
+2025-02-24 21:33:59.379702	Source Directory: /mnt/data/frozen_buckets/index4/db_1726681565_1726681190_422
+2025-02-24 21:33:59.379820	Bucket Id:db_1726681565_1726681190_422
+2025-02-24 21:33:59.379896	Destination Index: restored_data_100
+2025-02-24 21:33:59.379966	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1726681565_1726681190_422
+2025-02-24 21:33:59.380035	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1726681565_1726681190_422
+2025-02-24 21:37:19.104653	
+2025-02-24 21:37:19.105591	Source Directory: /mnt/data/frozen_buckets/index3/db_1726228510_1726227069_170
+2025-02-24 21:37:19.105699	Bucket Id:db_1726228510_1726227069_170
+2025-02-24 21:37:19.105775	Destination Index: restored_data_100
+2025-02-24 21:37:19.105844	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1726228510_1726227069_170
+2025-02-24 21:37:19.105914	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1726228510_1726227069_170
+2025-02-24 21:37:38.837495	
+2025-02-24 21:37:38.838447	Source Directory: /mnt/data/frozen_buckets/index4/db_1726681145_1726680718_421
+2025-02-24 21:37:38.838561	Bucket Id:db_1726681145_1726680718_421
+2025-02-24 21:37:38.838638	Destination Index: restored_data_100
+2025-02-24 21:37:38.838708	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1726681145_1726680718_421
+2025-02-24 21:37:38.838780	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1726681145_1726680718_421
+2025-02-24 21:41:09.371375	
+2025-02-24 21:41:09.372336	Source Directory: /mnt/data/frozen_buckets/index4/db_1726680726_1726680363_420
+2025-02-24 21:41:09.372464	Bucket Id:db_1726680726_1726680363_420
+2025-02-24 21:41:09.372560	Destination Index: restored_data_100
+2025-02-24 21:41:09.372649	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1726680726_1726680363_420
+2025-02-24 21:41:09.372739	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1726680726_1726680363_420
+2025-02-24 21:41:24.167559	
+2025-02-24 21:41:24.168496	Source Directory: /mnt/data/frozen_buckets/index4/db_1726680363_1726679938_419
+2025-02-24 21:41:24.168606	Bucket Id:db_1726680363_1726679938_419
+2025-02-24 21:41:24.168682	Destination Index: restored_data_100
+2025-02-24 21:41:24.168750	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1726680363_1726679938_419
+2025-02-24 21:41:24.168828	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1726680363_1726679938_419
+2025-02-24 21:44:18.319225	
+2025-02-24 21:44:18.320209	Source Directory: /mnt/data/frozen_buckets/index3/db_1726227069_1726225628_169
+2025-02-24 21:44:18.320344	Bucket Id:db_1726227069_1726225628_169
+2025-02-24 21:44:18.320441	Destination Index: restored_data_100
+2025-02-24 21:44:18.320531	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1726227069_1726225628_169
+2025-02-24 21:44:18.320621	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1726227069_1726225628_169
+2025-02-24 21:45:04.212114	
+2025-02-24 21:45:04.213060	Source Directory: /mnt/data/frozen_buckets/index4/db_1726679943_1726679518_418
+2025-02-24 21:45:04.213171	Bucket Id:db_1726679943_1726679518_418
+2025-02-24 21:45:04.213247	Destination Index: restored_data_100
+2025-02-24 21:45:04.213314	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1726679943_1726679518_418
+2025-02-24 21:45:04.213382	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1726679943_1726679518_418
+2025-02-24 21:48:02.638727	
+2025-02-24 21:48:04.683613	Waiting for work
+2025-02-24 21:48:04.683763	Queue empty, exiting
+2025-02-24 21:48:06.687856	Waiting for work
+2025-02-24 21:48:06.688006	Queue empty, exiting
+2025-02-24 21:48:08.692166	Waiting for work
+2025-02-24 21:48:08.692334	Queue empty, exiting
+2025-02-24 21:48:10.696535	Waiting for work
+2025-02-24 21:48:10.696669	Queue empty, exiting
+2025-02-24 21:48:12.700717	Waiting for work
+2025-02-24 21:48:12.700876	Queue empty, exiting
+2025-02-24 21:48:14.704851	Waiting for work
+2025-02-24 21:48:14.705024	Queue empty, exiting
+2025-02-24 21:48:16.708968	Waiting for work
+2025-02-24 21:48:16.709104	Queue empty, exiting
+2025-02-24 21:48:18.713515	Waiting for work
+2025-02-24 21:48:18.713710	Queue empty, exiting
+2025-02-24 21:48:20.718051	Waiting for work
+2025-02-24 21:48:20.718188	Queue empty, exiting
+2025-02-24 21:48:22.721976	Waiting for work
+2025-02-24 21:48:22.722109	Queue empty, exiting
+2025-02-24 21:48:24.726120	Waiting for work
+2025-02-24 21:48:24.726278	Queue empty, exiting
+2025-02-24 21:48:26.730153	Waiting for work
+2025-02-24 21:48:26.730295	Queue empty, exiting
+2025-02-24 21:48:28.734374	Waiting for work
+2025-02-24 21:48:28.734533	Queue empty, exiting
+2025-02-24 21:48:30.739679	Waiting for work
+2025-02-24 21:48:30.739831	Queue empty, exiting
+2025-02-24 21:48:32.744032	Waiting for work
+2025-02-24 21:48:32.744179	Queue empty, exiting
+2025-02-24 21:48:34.748249	Waiting for work
+2025-02-24 21:48:34.748410	Queue empty, exiting
+2025-02-24 21:48:36.752589	Waiting for work
+2025-02-24 21:48:36.752740	Queue empty, exiting
+2025-02-24 21:48:38.756821	Waiting for work
+2025-02-24 21:48:38.756974	Queue empty, exiting
+2025-02-24 21:48:40.760974	Waiting for work
+2025-02-24 21:48:40.761118	Queue empty, exiting
+2025-02-24 21:48:40.925467	
+2025-02-24 21:48:42.765815	Waiting for work
+2025-02-24 21:48:42.765974	Queue empty, exiting
+2025-02-24 22:11:41.368927	Worker with sessionID: 872c3650-1dc7-4cec-8241-cd733cd7754b
+2025-02-24 22:11:41.369051	Initial queue state: empty=False
+2025-02-24 22:11:41.369446	Source Directory: /mnt/data/frozen_buckets/index2/db_1717190350_1717189504_158
+2025-02-24 22:11:41.369560	Bucket Id:db_1717190350_1717189504_158
+2025-02-24 22:11:41.369637	Destination Index: restored_data_100
+2025-02-24 22:11:41.369709	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1717190350_1717189504_158
+2025-02-24 22:11:41.369778	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1717190350_1717189504_158
+2025-02-24 22:11:41.419077	Worker with sessionID: b789083a-1150-4171-8a59-a38631e0a2cb
+2025-02-24 22:11:41.419209	Initial queue state: empty=False
+2025-02-24 22:11:41.419603	Source Directory: /mnt/data/frozen_buckets/index2/db_1717189502_1717188724_157
+2025-02-24 22:11:41.419705	Bucket Id:db_1717189502_1717188724_157
+2025-02-24 22:11:41.419790	Destination Index: restored_data_100
+2025-02-24 22:11:41.419863	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1717189502_1717188724_157
+2025-02-24 22:11:41.419931	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1717189502_1717188724_157
+2025-02-24 22:11:41.452539	Worker with sessionID: 3a547756-26e8-42d6-ab54-bcbfe5bc1065
+2025-02-24 22:11:41.452669	Initial queue state: empty=False
+2025-02-24 22:11:41.453114	Source Directory: /mnt/data/frozen_buckets/index2/db_1717188722_1717187939_156
+2025-02-24 22:11:41.453233	Worker with sessionID: 170f5388-9c09-44e1-a2e5-1b2cb9d559b7
+2025-02-24 22:11:41.453258	Bucket Id:db_1717188722_1717187939_156
+2025-02-24 22:11:41.453357	Initial queue state: empty=False
+2025-02-24 22:11:41.453374	Destination Index: restored_data_100
+2025-02-24 22:11:41.453480	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1717188722_1717187939_156
+2025-02-24 22:11:41.453593	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1717188722_1717187939_156
+2025-02-24 22:11:41.453734	Source Directory: /mnt/data/frozen_buckets/index2/db_1717187939_1717187216_155
+2025-02-24 22:11:41.453835	Bucket Id:db_1717187939_1717187216_155
+2025-02-24 22:11:41.453911	Destination Index: restored_data_100
+2025-02-24 22:11:41.453979	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1717187939_1717187216_155
+2025-02-24 22:11:41.454049	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1717187939_1717187216_155
+2025-02-24 22:11:41.455607	Worker with sessionID: c7cfe6d0-e60c-47e2-919d-b6f62174eb5f
+2025-02-24 22:11:41.455722	Initial queue state: empty=False
+2025-02-24 22:11:41.456087	Source Directory: /mnt/data/frozen_buckets/index2/db_1717186429_1717185582_153
+2025-02-24 22:11:41.456188	Bucket Id:db_1717186429_1717185582_153
+2025-02-24 22:11:41.456264	Destination Index: restored_data_100
+2025-02-24 22:11:41.456334	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1717186429_1717185582_153
+2025-02-24 22:11:41.456403	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1717186429_1717185582_153
+2025-02-24 22:12:55.185186	Worker with sessionID: d884312c-b31a-446f-aec6-5dd1a0889775
+2025-02-24 22:12:55.185312	Initial queue state: empty=False
+2025-02-24 22:12:55.185705	Source Directory: /mnt/data/frozen_buckets/index2/db_1717187216_1717186429_154
+2025-02-24 22:12:55.185812	Bucket Id:db_1717187216_1717186429_154
+2025-02-24 22:12:55.185894	Destination Index: restored_data_100
+2025-02-24 22:12:55.185975	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1717187216_1717186429_154
+2025-02-24 22:12:55.186050	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1717187216_1717186429_154
+2025-02-24 22:12:55.240118	Worker with sessionID: 2dc50861-ac0d-4ec8-8116-0f7c6e13166a
+2025-02-24 22:12:55.240243	Initial queue state: empty=False
+2025-02-24 22:12:55.240610	Source Directory: /mnt/data/frozen_buckets/index2/db_1717185580_1717184799_152
+2025-02-24 22:12:55.240712	Bucket Id:db_1717185580_1717184799_152
+2025-02-24 22:12:55.240794	Destination Index: restored_data_100
+2025-02-24 22:12:55.240885	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1717185580_1717184799_152
+2025-02-24 22:12:55.240963	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1717185580_1717184799_152
+2025-02-24 22:12:55.251746	Worker with sessionID: 9947bc6e-16f0-40af-aaf8-cf6954d84275
+2025-02-24 22:12:55.251863	Initial queue state: empty=False
+2025-02-24 22:12:55.252238	Source Directory: /mnt/data/frozen_buckets/index2/db_1717184314_1717183529_150
+2025-02-24 22:12:55.252337	Bucket Id:db_1717184314_1717183529_150
+2025-02-24 22:12:55.252412	Destination Index: restored_data_100
+2025-02-24 22:12:55.252480	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1717184314_1717183529_150
+2025-02-24 22:12:55.252549	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1717184314_1717183529_150
+2025-02-24 22:12:55.256544	Worker with sessionID: ba6e1c44-6216-414c-a1ef-254148866b31
+2025-02-24 22:12:55.257670	Initial queue state: empty=False
+2025-02-24 22:12:55.258060	Source Directory: /mnt/data/frozen_buckets/index2/db_1717183529_1717182685_149
+2025-02-24 22:12:55.258160	Bucket Id:db_1717183529_1717182685_149
+2025-02-24 22:12:55.258236	Destination Index: restored_data_100
+2025-02-24 22:12:55.258306	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1717183529_1717182685_149
+2025-02-24 22:12:55.258376	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1717183529_1717182685_149
+2025-02-24 22:12:55.295718	Worker with sessionID: 71f8572f-168d-45f4-b7a7-2b7b7008b857
+2025-02-24 22:12:55.295840	Initial queue state: empty=False
+2025-02-24 22:12:55.296230	Source Directory: /mnt/data/frozen_buckets/index2/db_1717184795_1717184314_151
+2025-02-24 22:12:55.296328	Bucket Id:db_1717184795_1717184314_151
+2025-02-24 22:12:55.296403	Destination Index: restored_data_100
+2025-02-24 22:12:55.296471	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1717184795_1717184314_151
+2025-02-24 22:12:55.296540	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1717184795_1717184314_151
+2025-02-24 22:14:23.737419	Worker with sessionID: d249325c-d40c-4f94-89d9-5edb9bb37aea
+2025-02-24 22:14:23.737543	Initial queue state: empty=False
+2025-02-24 22:14:23.737924	Source Directory: /mnt/data/frozen_buckets/index2/db_1717190350_1717189504_158
+2025-02-24 22:14:23.738023	Bucket Id:db_1717190350_1717189504_158
+2025-02-24 22:14:23.738099	Destination Index: restored_data_100
+2025-02-24 22:14:23.738170	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1717190350_1717189504_158
+2025-02-24 22:14:23.738240	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1717190350_1717189504_158
+2025-02-24 22:14:24.372423	Worker with sessionID: 2d6c36d2-4b03-444a-b9e5-dff0d2a18b16
+2025-02-24 22:14:24.372563	Initial queue state: empty=False
+2025-02-24 22:14:24.372979	Source Directory: /mnt/data/frozen_buckets/index2/db_1717189502_1717188724_157
+2025-02-24 22:14:24.373085	Bucket Id:db_1717189502_1717188724_157
+2025-02-24 22:14:24.373164	Destination Index: restored_data_100
+2025-02-24 22:14:24.373241	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1717189502_1717188724_157
+2025-02-24 22:14:24.373315	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1717189502_1717188724_157
+2025-02-24 22:14:24.382660	Worker with sessionID: b11a93f4-08a1-4868-afd0-58ddbaf56416
+2025-02-24 22:14:24.382780	Initial queue state: empty=False
+2025-02-24 22:14:24.383199	Source Directory: /mnt/data/frozen_buckets/index2/db_1717188722_1717187939_156
+2025-02-24 22:14:24.383305	Bucket Id:db_1717188722_1717187939_156
+2025-02-24 22:14:24.383382	Destination Index: restored_data_100
+2025-02-24 22:14:24.383451	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1717188722_1717187939_156
+2025-02-24 22:14:24.383520	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1717188722_1717187939_156
+2025-02-24 22:14:24.425348	Worker with sessionID: 2f592207-f91c-4758-a12b-a8838e44b61c
+2025-02-24 22:14:24.425473	Initial queue state: empty=False
+2025-02-24 22:14:24.425912	Source Directory: /mnt/data/frozen_buckets/index2/db_1717187939_1717187216_155
+2025-02-24 22:14:24.426038	Bucket Id:db_1717187939_1717187216_155
+2025-02-24 22:14:24.426155	Destination Index: restored_data_100
+2025-02-24 22:14:24.426269	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1717187939_1717187216_155
+2025-02-24 22:14:24.426378	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1717187939_1717187216_155
+2025-02-24 22:14:26.349440	Worker with sessionID: b0d78cb5-38f6-4e1f-aef9-3f576d5a864a
+2025-02-24 22:14:26.349561	Initial queue state: empty=False
+2025-02-24 22:14:26.349934	Source Directory: /mnt/data/frozen_buckets/index2/db_1717186429_1717185582_153
+2025-02-24 22:14:26.350030	Bucket Id:db_1717186429_1717185582_153
+2025-02-24 22:14:26.350105	Destination Index: restored_data_100
+2025-02-24 22:14:26.350184	Destination Directory:/mnt/data/restored_data_100/thaweddb/db_1717186429_1717185582_153
+2025-02-24 22:14:26.350254	sudo /opt/splunk//bin/./splunk rebuild /mnt/data/restored_data_100/thaweddb/db_1717186429_1717185582_153
+2025-02-24 22:16:07.516785	Worker with sessionID: bb0dceab-a166-43c2-a37c-5e103623a503
+2025-02-24 22:16:07.516916	Initial queue state: empty=True
+2025-02-24 22:16:08.215957	Worker with sessionID: e8f82d49-6727-46a6-b01b-1aa64984a90d
+2025-02-24 22:16:08.217028	Initial queue state: empty=True
+2025-02-24 22:16:09.219288	Worker with sessionID: a2d0057e-6403-4a8b-98c2-a1e298b5b4f5
+2025-02-24 22:16:09.220608	Initial queue state: empty=True
+2025-02-24 22:16:10.107458	Worker with sessionID: ef3b7dae-dd46-4ed3-9f29-cb599ddd015a
+2025-02-24 22:16:10.115207	Initial queue state: empty=True
+2025-02-24 22:16:15.382679	Worker with sessionID: 36d28833-e1ac-4d82-ba3a-6f6650559f54
+2025-02-24 22:16:15.382803	Initial queue state: empty=True
