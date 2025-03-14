@@ -20,7 +20,7 @@ Example:
 
 **Components required**
 
-**Splunk: **version 9.4+
+**Splunk: **version 9.4+**
 
 **Microk8s/Docker:**
 splunk/splunk:latest (Splunk + pip redis w/ fxrestore.py)
