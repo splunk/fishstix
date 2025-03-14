@@ -20,14 +20,15 @@ Example:
 
 **Components required**
 
-Splunk: version 9.4+
+**Splunk: **version 9.4+
 
-Microk8s/Docker:
+**Microk8s/Docker:**
 splunk/splunk:latest (Splunk + pip redis w/ fxrestore.py)
 lokispundit/fxcopier:latest (Alpine + pip redis w/ fxcopier.py)
 Dockerfile also provided
 
-Redis:
+
+**Redis:**
 redis-server, redis-cli & redis.py (pip)
 spledis.py, spledis-llen.py (pip redis, splunklib)
 * _bug splunklib: modify /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py 
