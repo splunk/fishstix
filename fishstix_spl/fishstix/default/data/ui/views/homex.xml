@@ -1,0 +1,1673 @@
+
+<dashboard version="2" theme="light">
+    <label>Home</label>
+    <description></description>
+    <definition><![CDATA[
+{
+	"title": "Home",
+	"description": "",
+	"inputs": {
+		"input_Buk2eSom": {
+			"context": {
+				"formattedConfig": {
+					"number": {
+						"prefix": ""
+					}
+				},
+				"formattedStatics": ">statics | formatByType(formattedConfig)",
+				"label": ">primary | seriesByName(\"orig_index\") | renameSeries(\"label\") | formatByType(formattedConfig)",
+				"statics": [
+					[
+						"All"
+					],
+					[
+						"*"
+					]
+				],
+				"value": ">primary | seriesByName(\"orig_index\") | renameSeries(\"value\") | formatByType(formattedConfig)"
+			},
+			"dataSources": {
+				"primary": "ds_uk83ZNow"
+			},
+			"options": {
+				"defaultValue": "*",
+				"items": ">frame(label, value) | prepend(formattedStatics) | objects()",
+				"token": "orig_index"
+			},
+			"title": "Original Indexes",
+			"type": "input.dropdown"
+		},
+		"input_NOZcCznJ": {
+			"options": {
+				"defaultValue": "4w",
+				"items": [
+					{
+						"label": "monthly",
+						"value": "4w"
+					},
+					{
+						"label": "weekly",
+						"value": "1w"
+					},
+					{
+						"label": "daily",
+						"value": "1d"
+					}
+				],
+				"token": "dd_uOcLhK9N"
+			},
+			"title": "",
+			"type": "input.dropdown"
+		},
+		"input_global_trp": {
+			"options": {
+				"defaultValue": "0,",
+				"token": "global_time"
+			},
+			"title": "Global Time Range",
+			"type": "input.timerange"
+		},
+		"input_hvGhwiCn": {
+			"options": {
+				"defaultValue": "restored_data_100",
+				"token": "dest_index"
+			},
+			"title": "Destination Index",
+			"type": "input.text"
+		},
+		"input_mKxebgVl": {
+			"dataSources": {
+				"primary": "ds_9UILhxwx"
+			},
+			"options": {
+				"items": [
+					{
+						"label": "All",
+						"value": "*"
+					}
+				],
+				"token": "fx_restore_job",
+				"selectFirstSearchResult": true
+			},
+			"title": "Find Job",
+			"type": "input.dropdown"
+		},
+		"input_wXR8Fpul": {
+			"options": {
+				"defaultValue": "01/01/2024",
+				"token": "dd_bucket_start_time"
+			},
+			"title": "Bucket Start Time",
+			"type": "input.text"
+		},
+		"input_frnuKG0u": {
+			"options": {
+				"items": [
+					{
+						"label": "host",
+						"value": "host"
+					},
+					{
+						"label": "source",
+						"value": "source"
+					},
+					{
+						"label": "sourcetype",
+						"value": "sourcetype"
+					}
+				],
+				"defaultValue": "host",
+				"token": "split_by",
+				"backgroundColor": "transparent"
+			},
+			"title": "Filter by host/source/sourcetype",
+			"type": "input.dropdown"
+		},
+		"input_B0xaEa2s": {
+			"options": {
+				"items": [],
+				"token": "dd_avail_indexes",
+				"backgroundColor": "transparent",
+				"selectFirstSearchResult": true
+			},
+			"title": "Filter by host/source/sourcetype",
+			"type": "input.dropdown",
+			"dataSources": {
+				"primary": "ds_Ldjaxlq6"
+			}
+		}
+	},
+	"defaults": {
+		"dataSources": {
+			"ds.search": {
+				"options": {
+					"queryParameters": {
+						"earliest": "$global_time.earliest$",
+						"latest": "$global_time.latest$"
+					}
+				}
+			}
+		},
+		"tokens": {
+			"default": {
+				"dd_buckettime": {
+					"value": "\"01/01/2001\""
+				}
+			}
+		}
+	},
+	"visualizations": {
+		"viz_0H8gfql8": {
+			"type": "abslayout.line"
+		},
+		"viz_47oKxYaN": {
+			"options": {
+				"fillColor": "#f1813f"
+			},
+			"type": "splunk.rectangle"
+		},
+		"viz_4mLLRcV4": {
+			"dataSources": {
+				"primary": "ds_vm5p7cOL"
+			},
+			"options": {
+				"backgroundColor": "#f6f8f9",
+				"headerVisibility": "none",
+				"tableFormat": {
+					"headerBackgroundColor": "> backgroundColor | setColorChannel(tableHeaderBackgroundColorConfig)",
+					"headerColor": "> headerBackgroundColor | maxContrast(tableRowColorMaxContrast)",
+					"rowBackgroundColors": "> table | seriesByIndex(0) | pick(tableAltRowBackgroundColorsByBackgroundColor)",
+					"rowColors": "> rowBackgroundColors | maxContrast(tableRowColorMaxContrast)"
+				}
+			},
+			"title": "",
+			"type": "splunk.table"
+		},
+		"viz_549kYsYL": {
+			"containerOptions": {},
+			"dataSources": {
+				"primary": "ds_cxYUhgy4"
+			},
+			"eventHandlers": [
+				{
+					"options": {
+						"tokens": [
+							{
+								"key": "row.bucket_start_time.value",
+								"token": "dd_bucket_start_time"
+							}
+						]
+					},
+					"type": "drilldown.setToken"
+				},
+				{
+					"options": {
+						"tabId": "layout_zltwuN9h"
+					},
+					"type": "drilldown.switchToTab"
+				}
+			],
+			"options": {
+				"stackMode": "stacked",
+				"xAxisTitleVisibility": "hide",
+				"yAxisTitleText": ""
+			},
+			"showLastUpdated": false,
+			"showProgressBar": false,
+			"title": "To start a new Restore Job click on the date ranges below",
+			"type": "splunk.bar"
+		},
+		"viz_6P3Gyf6T": {
+			"eventHandlers": [
+				{
+					"type": "drilldown.linkToSearch",
+					"options": {
+						"earliest": "0",
+						"latest": "",
+						"newTab": false,
+						"query": "index=fx_jobs jobID=$fx_restore_job$ | makemv delim=\" \" redis | stats count by redis | push2copyq \n|  push2restoreq",
+						"type": "custom"
+					}
+				}
+			],
+			"options": {
+				"preserveAspectRatio": true,
+				"src": "splunk-enterprise-kvstore://67cf0b8ce85fdaf9620455f0"
+			},
+			"type": "splunk.image"
+		},
+		"viz_806fi34z": {
+			"dataSources": {
+				"primary": "ds_mzcFZ2Fl"
+			},
+			"options": {
+				"backgroundColor": "#f6f8f9",
+				"headerVisibility": "none",
+				"tableFormat": {
+					"headerBackgroundColor": "> backgroundColor | setColorChannel(tableHeaderBackgroundColorConfig)",
+					"headerColor": "> headerBackgroundColor | maxContrast(tableRowColorMaxContrast)",
+					"rowBackgroundColors": "> table | seriesByIndex(0) | pick(tableAltRowBackgroundColorsByBackgroundColor)",
+					"rowColors": "> rowBackgroundColors | maxContrast(tableRowColorMaxContrast)"
+				}
+			},
+			"title": "",
+			"type": "splunk.table"
+		},
+		"viz_9Atk4GLC": {
+			"options": {
+				"markdown": "push **JobID:**  $fx_restore_job$ to Redis Queues for processing",
+				"fontSize": "large"
+			},
+			"type": "splunk.markdown"
+		},
+		"viz_9sgIyxjm": {
+			"dataSources": {
+				"primary": "ds_uENisoqi"
+			},
+			"description": "history of Redis restore sessions",
+			"options": {
+				"count": 4,
+				"fontSize": "small"
+			},
+			"title": "FXRestore Logs",
+			"type": "splunk.table"
+		},
+		"viz_E2KygtnI": {
+			"options": {
+				"markdown": "### Welcome to FishStix - a Splunk Frozen Data Manager\n\nProject Details - [https://github.com/splunk/fishstix](https://github.com/splunk/fishstix)\n\nFishstix starts by using an inventory of the frozen data available in your environment. This inventory follows a simple CSV schema \n\n` <local path to data>,<file_size_bytes>,<bucket_id>,<staged index for data restore>`\n\nExample: \n\n`/mnt/data/frozen_buckets/index4/db_1726679943_1726679518_418,10240,db_1726679943_1726679518_418,restored_data_100`\n\nFishStix requires the frozen buckets to be mounted to this host at **/mnt/data/frozen_buckets/** for processing by the local container & Redis services.\n\nUpload your CSV inventory to the **index=fx** and using the provided **sourcetype=fx_inventory** and this page will populate with the inventory details of your frozen data"
+			},
+			"type": "splunk.markdown"
+		},
+		"viz_EmjLvDnb": {
+			"type": "abslayout.line"
+		},
+		"viz_GcT5z52F": {
+			"options": {
+				"fillColor": "#294e70"
+			},
+			"type": "splunk.rectangle"
+		},
+		"viz_Gs2H4gnF": {
+			"containerOptions": {
+				"visibility": {
+					"hideWhenNoData": true
+				}
+			},
+			"dataSources": {
+				"primary": "ds_5HwW24Mr"
+			},
+			"options": {
+				"count": 2
+			},
+			"title": "DEBUG - list send to index=jobs for tracking",
+			"type": "splunk.table"
+		},
+		"viz_Jj9UnaYO": {
+			"options": {
+				"fontColor": "#ffffff",
+				"markdown": "Options"
+			},
+			"type": "splunk.markdown"
+		},
+		"viz_M0uDuHd2": {
+			"dataSources": {
+				"primary": "ds_nl9prYG3"
+			},
+			"title": "",
+			"type": "splunk.singlevalueradial",
+			"containerOptions": {},
+			"showProgressBar": true,
+			"showLastUpdated": true,
+			"options": {
+				"splitByLayout": "trellis"
+			}
+		},
+		"viz_MBXsiovr": {
+			"options": {
+				"markdown": "**Monitor Redis Queues**",
+				"fontSize": "large"
+			},
+			"type": "splunk.markdown"
+		},
+		"viz_MEuPqq6l": {
+			"dataSources": {
+				"primary": "ds_JcPIZkzX"
+			},
+			"description": "history of bucket copies",
+			"options": {
+				"count": 4,
+				"fontSize": "small"
+			},
+			"title": "FXCopier Logs",
+			"type": "splunk.table"
+		},
+		"viz_NcSPAJ6s": {
+			"dataSources": {
+				"primary": "ds_rL1FSph0"
+			},
+			"eventHandlers": [
+				{
+					"options": {
+						"tokens": [
+							{
+								"key": "row.jobID.value",
+								"token": "jobID"
+							}
+						]
+					},
+					"type": "drilldown.setToken"
+				}
+			],
+			"options": {
+				"count": 4,
+				"columnFormat": {
+					"jobID": {
+						"data": "> table | seriesByName(\"jobID\") | formatByType(jobIDColumnFormatEditorConfig)",
+						"align": "auto",
+						"headerAlign": "auto",
+						"textOverflow": "ellipsis",
+						"rowColors": "> table | seriesByName(\"jobID\") | matchValue(jobIDRowColorsEditorConfig)"
+					}
+				}
+			},
+			"type": "splunk.table",
+			"context": {
+				"jobIDColumnFormatEditorConfig": {
+					"string": {
+						"unitPosition": "after"
+					}
+				},
+				"jobIDRowColorsEditorConfig": [
+					{
+						"match": "*",
+						"value": "#66aaf9"
+					}
+				]
+			}
+		},
+		"viz_O0qc8RG9": {
+			"options": {
+				"preserveAspectRatio": true,
+				"src": "splunk-enterprise-kvstore://67c1f39aa48265210907ec6d"
+			},
+			"type": "splunk.image"
+		},
+		"viz_RWuXPgTt": {
+			"options": {
+				"strokeColor": "#0877a6",
+				"strokeWidth": 4
+			},
+			"type": "abslayout.line"
+		},
+		"viz_RuLtOn44": {
+			"options": {
+				"preserveAspectRatio": true,
+				"src": "splunk-enterprise-kvstore://67c1f39aa48265210907ec6d"
+			},
+			"type": "splunk.image"
+		},
+		"viz_UV4OP5p4": {
+			"options": {
+				"markdown": "### This view is used to create a list of buckets to be restored to Splunk.\n- The Bucket Start Time is the minimum **mm/dd/yyyy** of the bucket to be found\n- The Original Indexes will populate from your inventory\n- Destination Index is staged at **restored_data_100** as default\n\n**Use the Table & selected Options below to choose the buckets you want added to the Job ID shown.**\n\n- Jobs will be created automatically\n- Use the **Manage Jobs** tab to add the buckets from jobs into the Redis Queues for restore."
+			},
+			"type": "splunk.markdown"
+		},
+		"viz_VvKGXbhT": {
+			"options": {
+				"strokeColor": "#f8be44",
+				"strokeWidth": 4
+			},
+			"type": "abslayout.line"
+		},
+		"viz_WMG5Ls29": {
+			"options": {
+				"fontColor": "#ffffff",
+				"fontSize": "extraLarge",
+				"markdown": "Selected Buckets"
+			},
+			"type": "splunk.markdown"
+		},
+		"viz_WqFLxo5g": {
+			"options": {
+				"fontColor": "#f8be44",
+				"markdown": "Host Details\n",
+				"fontSize": "large"
+			},
+			"type": "splunk.markdown"
+		},
+		"viz_cWx6Iske": {
+			"dataSources": {
+				"primary": "ds_hZ88v5Yl"
+			},
+			"options": {
+				"backgroundColor": "#f6f8f9",
+				"count": 15,
+				"headerVisibility": "none",
+				"tableFormat": {
+					"headerBackgroundColor": "> backgroundColor | setColorChannel(tableHeaderBackgroundColorConfig)",
+					"headerColor": "> headerBackgroundColor | maxContrast(tableRowColorMaxContrast)",
+					"rowBackgroundColors": "> table | seriesByIndex(0) | pick(tableAltRowBackgroundColorsByBackgroundColor)",
+					"rowColors": "> rowBackgroundColors | maxContrast(tableRowColorMaxContrast)"
+				}
+			},
+			"title": "",
+			"type": "splunk.table"
+		},
+		"viz_ghLwE0Gz": {
+			"containerOptions": {
+				"visibility": {}
+			},
+			"dataSources": {
+				"primary": "ds_zI8cm59Q_ds_dKvJgbcb"
+			},
+			"options": {
+				"backgroundColor": "> themes.defaultBackgroundColor",
+				"fontSize": "small",
+				"headerVisibility": "none",
+				"tableFormat": {
+					"rowBackgroundColors": "> table | seriesByIndex(0) | pick(tableAltRowBackgroundColorsByTheme)"
+				}
+			},
+			"showLastUpdated": false,
+			"showProgressBar": false,
+			"type": "splunk.table"
+		},
+		"viz_hC1xvSN4": {
+			"dataSources": {
+				"primary": "ds_AkvBBCqY"
+			},
+			"options": {
+				"headerVisibility": "none",
+				"refresh": "10s",
+				"refreshType": "delay"
+			},
+			"title": "Job ID",
+			"type": "splunk.table"
+		},
+		"viz_kxdOgjsd": {
+			"options": {
+				"fillColor": "#0877a6"
+			},
+			"type": "splunk.rectangle"
+		},
+		"viz_pVm2NJ2F": {
+			"options": {
+				"fontColor": "#f8be44",
+				"markdown": "Inventory Summary\n",
+				"fontSize": "large"
+			},
+			"type": "splunk.markdown"
+		},
+		"viz_qsesI5Ai": {
+			"options": {
+				"markdown": "Restored Data Available\n",
+				"fontColor": "#ec9960",
+				"fontSize": "large"
+			},
+			"type": "splunk.markdown"
+		},
+		"viz_raSyCxb9": {
+			"options": {
+				"fillColor": "#ec9960"
+			},
+			"type": "splunk.rectangle"
+		},
+		"viz_ueCRhh04": {
+			"options": {
+				"strokeColor": "#f8be44",
+				"strokeWidth": 4
+			},
+			"type": "abslayout.line"
+		},
+		"viz_zGoL48Yf": {
+			"context": {
+				"orig_indexColumnFormatEditorConfig": {
+					"string": {
+						"unitPosition": "after"
+					}
+				}
+			},
+			"dataSources": {
+				"primary": "ds_bAEzNmsr"
+			},
+			"description": "Click on the row to select buckets for restore",
+			"eventHandlers": [
+				{
+					"options": {
+						"tokens": [
+							{
+								"key": "row.bucket_start_time.value",
+								"token": "dd_bucket_start_time"
+							},
+							{
+								"key": "row.orig_index.value",
+								"token": "dd_orig_index"
+							}
+						]
+					},
+					"type": "drilldown.setToken"
+				}
+			],
+			"options": {
+				"columnFormat": {
+					"orig_index": {
+						"align": "auto",
+						"data": "> table | seriesByName(\"orig_index\") | formatByType(orig_indexColumnFormatEditorConfig)",
+						"headerAlign": "auto",
+						"textOverflow": "break-word"
+					}
+				},
+				"fontSize": "small",
+				"tableFormat": {
+					"align": "left",
+					"headerAlign": "left"
+				}
+			},
+			"title": "Available Buckets",
+			"type": "splunk.table"
+		},
+		"viz_8SvuJz9a": {
+			"type": "splunk.table",
+			"options": {},
+			"dataSources": {
+				"primary": "ds_sbIlRyBX"
+			},
+			"context": {},
+			"containerOptions": {},
+			"showProgressBar": false,
+			"showLastUpdated": false
+		},
+		"viz_cFofNsxj": {
+			"type": "splunk.singlevalue",
+			"options": {
+				"numberPrecision": 2
+			},
+			"dataSources": {
+				"primary": "ds_TVE8qOZ1_ds_BQN1dIlG"
+			},
+			"title": "GB Restored"
+		},
+		"viz_fDnRPJzu": {
+			"type": "splunk.singlevalue",
+			"dataSources": {
+				"primary": "ds_BQN1dIlG"
+			},
+			"title": "Buckets Restored"
+		},
+		"viz_C5ppuwd7": {
+			"options": {
+				"preserveAspectRatio": true,
+				"src": "splunk-enterprise-kvstore://67c1f39aa48265210907ec6d"
+			},
+			"type": "splunk.image"
+		},
+		"viz_BPsObdnX": {
+			"type": "splunk.line",
+			"dataSources": {
+				"primary": "ds_smYt2JbR"
+			},
+			"containerOptions": {},
+			"showProgressBar": false,
+			"showLastUpdated": false,
+			"title": "Timeline: Buckets Restored",
+			"options": {},
+			"context": {}
+		},
+		"viz_ZLmBWb6A": {
+			"type": "splunk.rectangle",
+			"options": {
+				"fillColor": "#0877a6"
+			}
+		},
+		"viz_6h6II7iR": {
+			"type": "splunk.image",
+			"options": {
+				"preserveAspectRatio": true,
+				"src": "splunk-enterprise-kvstore://67d1cc35deec916a3c08c214"
+			}
+		},
+		"viz_u6e7bYXd": {
+			"type": "splunk.markdown",
+			"options": {
+				"markdown": "**Search Restored Data**",
+				"fontSize": "extraLarge",
+				"fontColor": "#ec9960"
+			},
+			"eventHandlers": [
+				{
+					"type": "drilldown.customUrl",
+					"options": {
+						"url": "/app/fishstix/search",
+						"newTab": true
+					}
+				}
+			]
+		},
+		"viz_McNqyB79": {
+			"type": "splunk.singlevalue",
+			"dataSources": {
+				"primary": "ds_dYvvcDEh_ds_BQN1dIlG"
+			},
+			"title": "Average Bucket Restore Time",
+			"options": {
+				"numberPrecision": 2,
+				"unit": "seconds"
+			}
+		},
+		"viz_gjQLzFfy": {
+			"type": "splunk.column",
+			"options": {
+				"legendDisplay": "left"
+			},
+			"dataSources": {
+				"primary": "ds_jxfnrnYI"
+			},
+			"title": "Distribution of the count of events by $split-by$",
+			"eventHandlers": [
+				{
+					"type": "drilldown.setToken",
+					"options": {
+						"tokens": [
+							{
+								"token": "dd_val",
+								"key": "value"
+							}
+						]
+					}
+				},
+				{
+					"type": "drilldown.linkToSearch",
+					"options": {
+						"type": "auto",
+						"newTab": false
+					}
+				}
+			]
+		},
+		"viz_SbVym060": {
+			"type": "splunk.rectangle",
+			"options": {
+				"fillColor": "#ec9960"
+			}
+		},
+		"viz_DaW1fNHN": {
+			"type": "splunk.markdown",
+			"options": {
+				"markdown": "### Search Restored Data by available metadata",
+				"fontSize": "extraLarge",
+				"fontColor": "#000000"
+			},
+			"eventHandlers": [
+				{
+					"type": "drilldown.customUrl",
+					"options": {
+						"url": "/app/fishstix/search",
+						"newTab": true
+					}
+				}
+			]
+		},
+		"viz_zOEjyYVz": {
+			"type": "splunk.singlevalue",
+			"dataSources": {
+				"primary": "ds_EcK4bySv"
+			},
+			"title": "Total Event Count: $dd_avail_indexes$",
+			"options": {
+				"splitByLayout": "trellis"
+			},
+			"containerOptions": {},
+			"showProgressBar": false,
+			"showLastUpdated": false,
+			"description": "by"
+		},
+		"viz_dRC2P1Ky": {
+			"options": {
+				"fontColor": "#ffffff",
+				"fontSize": "large",
+				"markdown": "Bucket Counter by $jobID$"
+			},
+			"type": "splunk.markdown"
+		},
+		"viz_8QcpSxQR": {
+			"type": "splunk.markdown",
+			"options": {
+				"markdown": "**Search Restored Data**",
+				"fontSize": "extraLarge",
+				"fontColor": "#ec9960"
+			},
+			"eventHandlers": [
+				{
+					"type": "drilldown.customUrl",
+					"options": {
+						"url": "/app/fishstix/search",
+						"newTab": true
+					}
+				}
+			]
+		},
+		"viz_qFREcUZI": {
+			"type": "splunk.image",
+			"options": {
+				"preserveAspectRatio": true,
+				"src": "splunk-enterprise-kvstore://67d1cc35deec916a3c08c214"
+			}
+		},
+		"viz_py1bhIq8": {
+			"options": {
+				"markdown": "**Select a JobID** from the table below to load the buckets into the Copy & Restore queues\n\n**The panel on the right will monitor the Redis queues as they are processed by the Kubernetes containers (fxcopier/fxrestore)**\n\n*Logs*\n*- The fxcopier containers send data to the fxcopier.log*\n*- The fxrestore containers to the fxrestore.log*"
+			},
+			"type": "splunk.markdown"
+		},
+		"viz_9dPiGYvT": {
+			"options": {
+				"preserveAspectRatio": true,
+				"src": "splunk-enterprise-kvstore://67c1f39aa48265210907ec6d"
+			},
+			"type": "splunk.image"
+		},
+		"viz_GcHXHVnX": {
+			"options": {
+				"markdown": "**Search Restored Data**\n\n**Search Restored Data by metadata\nby**\n- host\n- source\n- sourcetypes",
+				"fontSize": "large"
+			},
+			"type": "splunk.markdown"
+		}
+	},
+	"dataSources": {
+		"ds_5HwW24Mr": {
+			"name": "jobID_summary_index",
+			"options": {
+				"enableSmartSources": true,
+				"query": "index=fx sourcetype=\"fx_inventory\" $dd_orig_index$ | rex field=src_bucket \"(?<bucket_id>db.\\d+.\\d+.\\d+)\" | rex field=bucket_id \"db_(?<bucket_start_epoch>\\d+)_(?<bucket_end_epoch>\\d+)\" | rex field=absolute_path \".frozen_buckets/(?<orig_index>.{1,25}).db\" | eval gb=round(file_size_bytes/1024/1024/1024,2) | bucket bucket_start_epoch span=1d | eval dest_index=\"$dest_index$\" | convert ctime(bucket_start_epoch) AS bucket_start_time timeformat=\"%m/%d/%Y\" | search bucket_start_time=$dd_bucket_start_time$ \n|  eval src_bucket=rtrim(src_bucket,\"/rawdata/\")| eval redis=src_bucket+\",\"+bucket_id+\",\"+dest_index | eval jobID=\"$jobID:result.jobID$\"\n|  stats values(redis) AS redis by jobID _time\n|  collect index=fx_jobs",
+				"queryParameters": {}
+			},
+			"type": "ds.search"
+		},
+		"ds_9UILhxwx": {
+			"name": "job_id",
+			"options": {
+				"query": "index=fx_jobs \n|  fields jobID _time \n|  dedup jobID\n|  sort + _time",
+				"queryParameters": {
+					"earliest": "-7d@h",
+					"latest": "now"
+				}
+			},
+			"type": "ds.search"
+		},
+		"ds_AkvBBCqY": {
+			"name": "jobID",
+			"options": {
+				"enableSmartSources": true,
+				"query": "index=_internal | eval jobID=md5(date_second) \n|  rex field=jobID \"(?<job_small_id>\\w{1,10})\"\n|  stats last(job_small_id) AS jobID \n|  fields jobID",
+				"queryParameters": {
+					"earliest": "-15m",
+					"latest": "now"
+				}
+			},
+			"type": "ds.search"
+		},
+		"ds_JcPIZkzX": {
+			"name": "fxcopier.log - session history",
+			"options": {
+				"query": "index=fx_internal sourcetype=fx_copier_log    | rex field=_raw \"(?<bucket_id>db.\\d+.\\d+.\\d+)\"  | bucket _time span=2s | streamstats window=2 current=t first(bucket_id) as bucket_id_first mode(bucket_id) as bucket_id_middle last(bucket_id) as bucket_id_last by _time | where bucket_id_last!=bucket_id_first | streamstats window=2 current=t first(_time) as changedtime  | eval duration=changedtime-_time  | table _time, bucket_id_first, bucket_id_last, duration | where duration>0 | sort - _time | eval minutes=round(duration/60,2)"
+			},
+			"type": "ds.search"
+		},
+		"ds_Sx302asz_ds_cxYUhgy4": {
+			"name": "bucket_count_timechart_inventory",
+			"options": {
+				"enableSmartSources": true,
+				"query": "index=fx sourcetype=\"fx_inventory\" | rex field=src_bucket \"(?<bucket_id>db.\\d+.\\d+.\\d+)\"  | rex field=bucket_id \"db_(?<bucket_start_epoch>\\d+)_(?<bucket_end_epoch>\\d+)\"  | rex field=absolute_path \".frozen_buckets/(?<orig_index>.{1,25}).db\"| eval gb=round(file_size_bytes/1024/1024/1024,2) | bucket bucket_start_epoch span=$dd_uOcLhK9N$ | convert ctime(bucket_start_epoch) AS bucket_start_time timeformat=\"%m/%d/%Y\"| chart dc(bucket_id) AS bucket_count over bucket_start_time  by orig_index",
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				}
+			},
+			"type": "ds.search"
+		},
+		"ds_bAEzNmsr": {
+			"name": "bucket_list",
+			"options": {
+				"query": "index=fx sourcetype=\"fx_inventory\"  $orig_index$\n| rex field=src_bucket \"(?<bucket_id>db.\\d+.\\d+.\\d+)\"  \n| rex field=bucket_id \"db_(?<bucket_start_epoch>\\d+)_(?<bucket_end_epoch>\\d+)\"  \n| rex field=absolute_path \".frozen_buckets/(?<orig_index>.{1,25}).db\"\n| eval gb=round(file_size_bytes/1024/1024/1024,2) \n| bucket bucket_start_epoch span=1d \n| convert ctime(bucket_start_epoch) AS bucket_start_time timeformat=\"%m/%d/%Y\"\n| search bucket_start_time>=\"$dd_bucket_start_time$\" | stats dc(bucket_id) AS bucket_count sum(gb) AS total_gb by orig_index bucket_start_time | sort - bucket_start_time | table bucket_start_time orig_index bucket_count total_gb \n|  addcoltotals bucket_count, total_gb label=Total \n|  sort + bucket_start_time"
+			},
+			"type": "ds.search"
+		},
+		"ds_cxYUhgy4": {
+			"name": "bucket_count_timechart",
+			"options": {
+				"enableSmartSources": true,
+				"query": "index=fx sourcetype=\"fx_inventory\" | rex field=src_bucket \"(?<bucket_id>db.\\d+.\\d+.\\d+)\"  | rex field=bucket_id \"db_(?<bucket_start_epoch>\\d+)_(?<bucket_end_epoch>\\d+)\"  | rex field=absolute_path \".frozen_buckets/(?<orig_index>.{1,25}).db\"| eval gb=round(file_size_bytes/1024/1024/1024,2) | bucket bucket_start_epoch span=$dd_uOcLhK9N$ | convert ctime(bucket_start_epoch) AS bucket_start_time timeformat=\"%m/%d/%Y\"| chart dc(bucket_id) AS bucket_count over bucket_start_time  by orig_index",
+				"queryParameters": {
+					"earliest": "$global_time.earliest$",
+					"latest": "$global_time.latest$"
+				}
+			},
+			"type": "ds.search"
+		},
+		"ds_hZ88v5Yl": {
+			"name": "local_server_info",
+			"options": {
+				"query": "| rest splunk_server=local /services/server/info | fields version build cpu_arch os_name os_version host host_fqdn host_resolved master_uri numberOfVirtualCores federated_search_enabled\n|  rename numberOfVirtualCores AS vCPU \n|  rename federated_search_enabled AS FedSearch  | transpose"
+			},
+			"type": "ds.search"
+		},
+		"ds_mzcFZ2Fl": {
+			"name": "inventory_summary",
+			"options": {
+				"query": "index=fx sourcetype=\"fx_inventory\" | rex field=src_bucket \"(?<bucket_id>db.\\d+.\\d+.\\d+)\"  | rex field=bucket_id \"db_(?<bucket_start_epoch>\\d+)_(?<bucket_end_epoch>\\d+)\"  | rex field=absolute_path \".frozen_buckets/(?<orig_index>.{1,25}).db\"| eval gb=round(file_size_bytes/1024/1024/1024,2) | convert ctime(bucket_start_epoch) AS bucket_start_time | convert ctime(bucket_end_epoch) AS bucket_end_time | stats last(bucket_start_time) AS \"Earliest Bucket\" first(bucket_end_time) AS \"Latest Bucket\" dc(orig_index) AS \"Original Indexes\" sum(gb) AS \"Total GB\" dc(src_bucket) AS \"Total Buckets Found:\" | transpose"
+			},
+			"type": "ds.search"
+		},
+		"ds_nl9prYG3": {
+			"name": "q_counter",
+			"options": {
+				"query": "index=fx_internal sourcetype=\"fx_buildqueue_log\" | rex field=_raw \"redis_queue:(?<q_name>\\w+)_counter:(?<q_counter>\\d+)\" | stats first(q_counter) AS q_counter by q_name",
+				"queryParameters": {
+					"earliest": "rt-1m",
+					"latest": "rt"
+				}
+			},
+			"type": "ds.search"
+		},
+		"ds_rL1FSph0": {
+			"name": "buckets_by_jobId",
+			"options": {
+				"query": "index=fx_jobs jobID=$fx_restore_job$ \n|  fields redis jobID | makemv delim=\" \" redis | stats dc(redis) AS bucket_count by _time, jobID \n| sort + _time"
+			},
+			"type": "ds.search"
+		},
+		"ds_uENisoqi": {
+			"name": "restore.log - session history",
+			"options": {
+				"query": "index=fx_internal \"session*\" | rex field=_raw \"sessionID:\\s(?<sessionID>.{1,45})\" | bucket _time span=1s  | streamstats window=2 current=t first(sessionID) as sessionID_start mode(sessionID) as sessionID_middle last(sessionID) as sessionID_end by _time | where sessionID_end!=sessionID_start | streamstats window=2 current=t first(_time) as changedtime  | eval duration=changedtime-_time  | table _time sessionID_start sessionID_end, duration | where duration>0 | eval duration_minutes=round(duration/60,3) | sort - _time"
+			},
+			"type": "ds.search"
+		},
+		"ds_uk83ZNow": {
+			"name": "list_orig_indexes",
+			"options": {
+				"query": "earliest=1 index=fx sourcetype=fx_inventory absolute_path=*frozen_buckets* | rex field=absolute_path \".frozen_buckets/(?<orig_index>.{1,25}).db\" | fields orig_index |  dedup orig_index"
+			},
+			"type": "ds.search"
+		},
+		"ds_vm5p7cOL": {
+			"name": "restore_history",
+			"options": {
+				"query": "| dbinspect index=restored_data_100 | eval sizeOnDiskGB=round(sizeOnDiskMB/1024,3) | stats dc(bucketId) AS bucket_count sum(sizeOnDiskGB) AS sizeOnDiskGB max(eventCount) AS event_count \n|  transpose"
+			},
+			"type": "ds.search"
+		},
+		"ds_zI8cm59Q_ds_dKvJgbcb": {
+			"name": "redis_table_summary",
+			"options": {
+				"query": "index=fx sourcetype=\"fx_inventory\" $dd_orig_index$ | rex field=src_bucket \"(?<bucket_id>db.\\d+.\\d+.\\d+)\" | rex field=bucket_id \"db_(?<bucket_start_epoch>\\d+)_(?<bucket_end_epoch>\\d+)\" | rex field=absolute_path \".frozen_buckets/(?<orig_index>.{1,25}).db\" | eval gb=round(file_size_bytes/1024/1024/1024,2) | bucket bucket_start_epoch span=1d | eval dest_index=\"$dest_index$\" | convert ctime(bucket_start_epoch) AS bucket_start_time timeformat=\"%m/%d/%Y\" | search bucket_start_time=$dd_bucket_start_time$ \n| stats dc(bucket_id) AS bucket_count sum(gb) AS total_gb first(bucket_start_time) AS \"Earliest Bucket Time\" last(bucket_start_time) AS \"Latest Bucket Time\" by dest_index \n|  transpose"
+			},
+			"type": "ds.search"
+		},
+		"ds_sbIlRyBX": {
+			"type": "ds.search",
+			"options": {
+				"query": "index=fx sourcetype=\"fx_inventory\" $dd_orig_index$ | rex field=src_bucket \"(?<bucket_id>db.\\d+.\\d+.\\d+)\" | rex field=bucket_id \"db_(?<bucket_start_epoch>\\d+)_(?<bucket_end_epoch>\\d+)\" | rex field=absolute_path \".frozen_buckets/(?<orig_index>.{1,25}).db\" | eval gb=round(file_size_bytes/1024/1024/1024,2) | bucket bucket_start_epoch span=1d | eval dest_index=\"$dest_index$\" | convert ctime(bucket_start_epoch) AS bucket_start_time timeformat=\"%m/%d/%Y\" | search bucket_start_time=$dd_bucket_start_time$ \n|  eval src_bucket=rtrim(src_bucket,\"/rawdata/\")| eval redis=src_bucket+\",\"+bucket_id+\",\"+dest_index | eval jobID=\"$jobID:result.jobID$\"\n|  stats dc(redis) AS redis by jobID"
+			},
+			"name": "job_counter"
+		},
+		"ds_8b9CCdNn": {
+			"type": "ds.search",
+			"options": {
+				"query": "index=fx_jobs | stats last(_time) AS last_time  max(dur_seconds) AS duration_seconds max(*mb) AS *mb max(max_normalized_pct_cpu) AS max_norm_cpu by bucket_id  dest_index | convert ctime(last_time) AS last_time "
+			},
+			"name": "restore_summary_stats"
+		},
+		"ds_BQN1dIlG": {
+			"type": "ds.search",
+			"options": {
+				"query": "index=fx_jobs | stats dc(bucket_id)",
+				"queryParameters": {
+					"earliest": "0",
+					"latest": ""
+				}
+			},
+			"name": "fxjobs_bucket_count"
+		},
+		"ds_TVE8qOZ1_ds_BQN1dIlG": {
+			"type": "ds.search",
+			"options": {
+				"query": "index=fx_jobs \n|  eval gb='write_mb'/1024 | stats max(gb) AS \"Total GB Restored\" by bucket_id \n|  addcoltotals"
+			},
+			"name": "fxjobs_size_gb"
+		},
+		"ds_smYt2JbR": {
+			"type": "ds.search",
+			"options": {
+				"query": "index=fx_jobs | timechart dc(bucket_id) AS bucket_count span=1h"
+			},
+			"name": "fx_jobs_timechart"
+		},
+		"ds_dYvvcDEh_ds_BQN1dIlG": {
+			"type": "ds.search",
+			"options": {
+				"query": "index=fx_jobs | stats max(dur_seconds) AS dur_seconds by bucket_id \n|  stats avg(dur_seconds) AS avg_dur_seconds"
+			},
+			"name": "fxjobs_average_restore_time"
+		},
+		"ds_jxfnrnYI": {
+			"type": "ds.search",
+			"options": {
+				"query": "| metadata type=hosts index=$dd_avail_indexes$ | append [ metadata type=sources index=$dd_avail_indexes$] | append [ metadata type=sourcetypes index=$dd_avail_indexes$] | eval _time=firstTime | timechart last(totalCount) AS event_count by $split_by$ usenull=f",
+				"queryParameters": {
+					"earliest": "0",
+					"latest": ""
+				}
+			},
+			"name": "metadata_search"
+		},
+		"ds_Ldjaxlq6": {
+			"type": "ds.search",
+			"options": {
+				"query": "index=fx_jobs \n|  fields dest_index\n| dedup dest_index"
+			},
+			"name": "fx_jobs_dest_indexes"
+		},
+		"ds_RbF8lxzN": {
+			"type": "ds.search",
+			"options": {
+				"query": "| metadata type=$split_by$s index=$dd_avail_indexes$  | stats last(totalCount) AS totalCount by $split_by$ "
+			},
+			"name": "metdata_search3"
+		},
+		"ds_EcK4bySv": {
+			"type": "ds.search",
+			"options": {
+				"query": "| metadata type=hosts index=$dd_avail_indexes$   | stats last(totalCount) AS host_event_count by type\n| append[| metadata type=sources index=$dd_avail_indexes$     | stats last(totalCount) AS sources_event_count by type ]\n| append[| metadata type=sourcetypes index=$dd_avail_indexes$     | stats last(totalCount) AS sourcetypes_event_count by type] | stats max(*count) AS *count by type",
+				"queryParameters": {
+					"earliest": "0",
+					"latest": ""
+				}
+			},
+			"name": "metadata_event_count"
+		}
+	},
+	"layout": {
+		"globalInputs": [
+			"input_global_trp"
+		],
+		"layoutDefinitions": {
+			"layout_1": {
+				"options": {
+					"backgroundColor": "#ffffff",
+					"display": "auto",
+					"height": 960,
+					"width": 1440
+				},
+				"structure": [
+					{
+						"item": "viz_GcT5z52F",
+						"position": {
+							"h": 650,
+							"w": 1350,
+							"x": 20,
+							"y": 260
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_549kYsYL",
+						"position": {
+							"h": 630,
+							"w": 770,
+							"x": 590,
+							"y": 270
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_O0qc8RG9",
+						"position": {
+							"h": 130,
+							"w": 100,
+							"x": 60,
+							"y": 50
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_E2KygtnI",
+						"position": {
+							"h": 210,
+							"w": 1100,
+							"x": 190,
+							"y": 30
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_806fi34z",
+						"position": {
+							"h": 370,
+							"w": 260,
+							"x": 320,
+							"y": 300
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_4mLLRcV4",
+						"position": {
+							"h": 190,
+							"w": 550,
+							"x": 30,
+							"y": 710
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_cWx6Iske",
+						"position": {
+							"h": 370,
+							"w": 280,
+							"x": 30,
+							"y": 300
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_WqFLxo5g",
+						"position": {
+							"h": 20,
+							"w": 110,
+							"x": 30,
+							"y": 270
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_pVm2NJ2F",
+						"position": {
+							"h": 20,
+							"w": 180,
+							"x": 320,
+							"y": 270
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_qsesI5Ai",
+						"position": {
+							"h": 20,
+							"w": 180,
+							"x": 30,
+							"y": 680
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_0H8gfql8",
+						"position": {
+							"from": {
+								"x": 37,
+								"y": 247
+							},
+							"to": {
+								"x": 1353,
+								"y": 248
+							}
+						},
+						"type": "line"
+					},
+					{
+						"item": "input_NOZcCznJ",
+						"position": {
+							"h": 82,
+							"w": 198,
+							"x": 1160,
+							"y": 250
+						},
+						"type": "input"
+					},
+					{
+						"item": "viz_8QcpSxQR",
+						"type": "block",
+						"position": {
+							"x": 350,
+							"y": 830,
+							"w": 200,
+							"h": 30
+						}
+					},
+					{
+						"item": "viz_qFREcUZI",
+						"type": "block",
+						"position": {
+							"x": 290,
+							"y": 820,
+							"w": 90,
+							"h": 50
+						}
+					}
+				],
+				"type": "absolute"
+			},
+			"layout_v4Jlx6MU": {
+				"options": {
+					"backgroundColor": "#ffffff"
+				},
+				"structure": [
+					{
+						"item": "viz_RWuXPgTt",
+						"position": {
+							"from": {
+								"x": 22,
+								"y": 488
+							},
+							"to": {
+								"x": 1168,
+								"y": 488
+							}
+						},
+						"type": "line"
+					},
+					{
+						"item": "viz_47oKxYaN",
+						"position": {
+							"h": 330,
+							"w": 380,
+							"x": 780,
+							"y": 80
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_9sgIyxjm",
+						"position": {
+							"h": 370,
+							"w": 560,
+							"x": 590,
+							"y": 500
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_MEuPqq6l",
+						"position": {
+							"h": 360,
+							"w": 530,
+							"x": 30,
+							"y": 510
+						},
+						"type": "block"
+					},
+					{
+						"item": "input_mKxebgVl",
+						"position": {
+							"h": 82,
+							"w": 198,
+							"x": 490,
+							"y": 160
+						},
+						"type": "input"
+					},
+					{
+						"item": "viz_NcSPAJ6s",
+						"position": {
+							"h": 240,
+							"w": 730,
+							"x": 40,
+							"y": 230
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_6P3Gyf6T",
+						"position": {
+							"h": 30,
+							"w": 60,
+							"x": 120,
+							"y": 420
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_9Atk4GLC",
+						"position": {
+							"h": 50,
+							"w": 390,
+							"x": 180,
+							"y": 420
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_M0uDuHd2",
+						"position": {
+							"h": 220,
+							"w": 330,
+							"x": 800,
+							"y": 150
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_MBXsiovr",
+						"position": {
+							"h": 30,
+							"w": 200,
+							"x": 790,
+							"y": 110
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_py1bhIq8",
+						"type": "block",
+						"position": {
+							"x": 190,
+							"y": 30,
+							"w": 350,
+							"h": 160
+						}
+					},
+					{
+						"item": "viz_9dPiGYvT",
+						"type": "block",
+						"position": {
+							"x": 60,
+							"y": 50,
+							"w": 100,
+							"h": 130
+						}
+					}
+				],
+				"type": "absolute"
+			},
+			"layout_zltwuN9h": {
+				"options": {
+					"backgroundColor": "#ffffff"
+				},
+				"structure": [
+					{
+						"item": "viz_EmjLvDnb",
+						"position": {
+							"from": {
+								"x": 55,
+								"y": 225
+							},
+							"to": {
+								"x": 1146,
+								"y": 228
+							}
+						},
+						"type": "line"
+					},
+					{
+						"item": "viz_kxdOgjsd",
+						"position": {
+							"h": 400,
+							"w": 320,
+							"x": 860,
+							"y": 240
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_raSyCxb9",
+						"position": {
+							"h": 330,
+							"w": 200,
+							"x": 40,
+							"y": 250
+						},
+						"type": "block"
+					},
+					{
+						"item": "input_wXR8Fpul",
+						"position": {
+							"h": 82,
+							"w": 198,
+							"x": 40,
+							"y": 250
+						},
+						"type": "input"
+					},
+					{
+						"item": "viz_zGoL48Yf",
+						"position": {
+							"h": 390,
+							"w": 600,
+							"x": 250,
+							"y": 250
+						},
+						"type": "block"
+					},
+					{
+						"item": "input_Buk2eSom",
+						"position": {
+							"h": 82,
+							"w": 198,
+							"x": 40,
+							"y": 320
+						},
+						"type": "input"
+					},
+					{
+						"item": "viz_RuLtOn44",
+						"position": {
+							"h": 130,
+							"w": 100,
+							"x": 60,
+							"y": 50
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_UV4OP5p4",
+						"position": {
+							"h": 180,
+							"w": 730,
+							"x": 190,
+							"y": 30
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_ghLwE0Gz",
+						"position": {
+							"h": 230,
+							"w": 280,
+							"x": 870,
+							"y": 270
+						},
+						"type": "block"
+					},
+					{
+						"item": "input_hvGhwiCn",
+						"position": {
+							"h": 82,
+							"w": 198,
+							"x": 40,
+							"y": 410
+						},
+						"type": "input"
+					},
+					{
+						"item": "viz_Jj9UnaYO",
+						"position": {
+							"h": 30,
+							"w": 70,
+							"x": 40,
+							"y": 230
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_WMG5Ls29",
+						"position": {
+							"h": 90,
+							"w": 160,
+							"x": 870,
+							"y": 240
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_ueCRhh04",
+						"position": {
+							"from": {
+								"x": 871,
+								"y": 512
+							},
+							"to": {
+								"x": 1142,
+								"y": 511
+							}
+						},
+						"type": "line"
+					},
+					{
+						"item": "viz_VvKGXbhT",
+						"position": {
+							"from": {
+								"x": 1026,
+								"y": 256
+							},
+							"to": {
+								"x": 1139,
+								"y": 256
+							}
+						},
+						"type": "line"
+					},
+					{
+						"item": "viz_Gs2H4gnF",
+						"position": {
+							"h": 230,
+							"w": 1130,
+							"x": 30,
+							"y": 650
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_hC1xvSN4",
+						"position": {
+							"h": 40,
+							"w": 170,
+							"x": 50,
+							"y": 490
+						},
+						"type": "block"
+					},
+					{
+						"item": "viz_8SvuJz9a",
+						"type": "block",
+						"position": {
+							"x": 870,
+							"y": 550,
+							"w": 280,
+							"h": 80
+						}
+					},
+					{
+						"item": "viz_dRC2P1Ky",
+						"position": {
+							"x": 870,
+							"y": 520,
+							"w": 240,
+							"h": 30
+						},
+						"type": "block"
+					}
+				],
+				"type": "absolute"
+			},
+			"layout_9sVTnPQX": {
+				"type": "absolute",
+				"structure": [
+					{
+						"item": "viz_SbVym060",
+						"type": "block",
+						"position": {
+							"x": 20,
+							"y": 390,
+							"w": 1160,
+							"h": 500
+						}
+					},
+					{
+						"item": "viz_ZLmBWb6A",
+						"type": "block",
+						"position": {
+							"x": 250,
+							"y": 10,
+							"w": 920,
+							"h": 370
+						}
+					},
+					{
+						"item": "viz_cFofNsxj",
+						"type": "block",
+						"position": {
+							"x": 260,
+							"y": 20,
+							"w": 200,
+							"h": 80
+						}
+					},
+					{
+						"item": "viz_fDnRPJzu",
+						"type": "block",
+						"position": {
+							"x": 470,
+							"y": 20,
+							"w": 150,
+							"h": 80
+						}
+					},
+					{
+						"item": "viz_C5ppuwd7",
+						"type": "block",
+						"position": {
+							"x": 60,
+							"y": 50,
+							"w": 100,
+							"h": 130
+						}
+					},
+					{
+						"item": "viz_BPsObdnX",
+						"type": "block",
+						"position": {
+							"x": 260,
+							"y": 110,
+							"w": 900,
+							"h": 260
+						}
+					},
+					{
+						"item": "viz_6h6II7iR",
+						"type": "block",
+						"position": {
+							"x": 870,
+							"y": 50,
+							"w": 90,
+							"h": 40
+						}
+					},
+					{
+						"item": "viz_u6e7bYXd",
+						"type": "block",
+						"position": {
+							"x": 930,
+							"y": 50,
+							"w": 190,
+							"h": 30
+						}
+					},
+					{
+						"item": "viz_McNqyB79",
+						"type": "block",
+						"position": {
+							"x": 630,
+							"y": 20,
+							"w": 220,
+							"h": 80
+						}
+					},
+					{
+						"item": "viz_gjQLzFfy",
+						"type": "block",
+						"position": {
+							"x": 30,
+							"y": 580,
+							"w": 1130,
+							"h": 300
+						}
+					},
+					{
+						"item": "input_frnuKG0u",
+						"type": "input",
+						"position": {
+							"x": 240,
+							"y": 470,
+							"w": 208,
+							"h": 82
+						}
+					},
+					{
+						"item": "input_B0xaEa2s",
+						"type": "input",
+						"position": {
+							"x": 30,
+							"y": 470,
+							"w": 208,
+							"h": 82
+						}
+					},
+					{
+						"item": "viz_DaW1fNHN",
+						"type": "block",
+						"position": {
+							"x": 40,
+							"y": 410,
+							"w": 400,
+							"h": 70
+						}
+					},
+					{
+						"item": "viz_zOEjyYVz",
+						"type": "block",
+						"position": {
+							"x": 520,
+							"y": 410,
+							"w": 640,
+							"h": 150
+						}
+					},
+					{
+						"item": "viz_GcHXHVnX",
+						"type": "block",
+						"position": {
+							"x": 20,
+							"y": 170,
+							"w": 220,
+							"h": 200
+						}
+					}
+				],
+				"options": {
+					"backgroundColor": "#ffffff"
+				}
+			}
+		},
+		"options": {},
+		"tabs": {
+			"items": [
+				{
+					"label": "Home",
+					"layoutId": "layout_1"
+				},
+				{
+					"label": "Create a Restore Job",
+					"layoutId": "layout_zltwuN9h"
+				},
+				{
+					"label": "Manage Jobs",
+					"layoutId": "layout_v4Jlx6MU"
+				},
+				{
+					"layoutId": "layout_9sVTnPQX",
+					"label": "Search Restored Data"
+				}
+			]
+		}
+	}
+}
+    ]]></definition>
+    <meta type="hiddenElements"><![CDATA[
+{
+	"hideEdit": false,
+	"hideOpenInSearch": false,
+	"hideExport": true
+}
+    ]]></meta>
+</dashboard>
