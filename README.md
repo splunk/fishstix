@@ -31,5 +31,6 @@ Dockerfile also provided
 **Redis:**
 redis-server, redis-cli & redis.py (pip)
 spledis.py, spledis-llen.py (pip redis, splunklib)
-* _bug splunklib: modify /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py 
+* _bug splunklib (https://github.com/splunk/splunk-sdk-python/issues/605)
+* workaround : modify /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py 
 change (self._process_protocol_v1 to self._process_protocol_v2 under def process. chunked=true not being honored)_
