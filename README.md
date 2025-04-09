@@ -21,17 +21,23 @@ Example:
 The setup runs in 4 steps:
 
 - Clone this repo
-- Run the bin/microk8s_installer.sh to setup Microk8s deployment
+- Run the bin/setup/install_reqs.sh to begin setup of the pre-requisite components
+  - apt install docker.io
+  - apt install redis-server
+  - apt install redis-tools
+  - pip install redis splunklib
+  - Install Microk8s v 1.32
 - Logout and back into the host
-- Continue the installation by logging back in and using the bin/setup_fishstix.sh script for the final setup
-
+  - Continue the installation by logging back in and using the bin/setup_fishstix.sh to continue setup
+  - This will deploy all files to the **/opt/fishstix** directory
+  - The will install the provided fishstix.spl file for the FishStix Splunk App
 **Components required**
 
 **Splunk: version 9.4+**
 
 **Microk8s/Docker:**
 - splunk/splunk:latest (Splunk + pip redis w/ fxrestore.py)
-- lokispundit/fxcopier:latest (Alpine + Python 3.11 to support shuttil recursive copy  + pip redis w/ fxcopier.py)
+- lokispundit/fxcopier:latest (Alpine + Python 3.11 to support shuttil recursive copy feature  + pip redis w/ fxcopier.py)
 - Dockerfile also provided
 
 
