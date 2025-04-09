@@ -17,6 +17,13 @@ local path to data,
 Example:
 /mnt/data/frozen_buckets/index4/db_1726679943_1726679518_418,10240,db_1726679943_1726679518_418,restored_data_100
 
+**Installer**
+The setup runs in 4 steps:
+
+- Clone this repo
+- Run the bin/microk8s_installer.sh to setup Microk8s deployment
+- Logout and back into the host
+- Continue the installation by logging back in and using the bin/setup_fishstix.sh script for the final setup
 
 **Components required**
 
