@@ -12,10 +12,10 @@ CSV Schema:
 local path to data,
   file_size_bytes,
     bucket_id,
-      dest_index
+      
 
 Example:
-/mnt/data/frozen_buckets/index4/db_1726679943_1726679518_418,10240,db_1726679943_1726679518_418,restored_data_100
+/mnt/data/frozen_buckets/index4/db_1726679943_1726679518_418,10240,db_1726679943_1726679518_418
 
 **Installer**
 The setup runs in 4 steps:
