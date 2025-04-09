@@ -40,5 +40,5 @@ echo "Applying YAML - fxrestore x 15 pods"
 kubectl apply -f ../yaml/fxrestore.yaml
 
 echo "Applying FishStix SPL app"
-/splunk install /home/splunker/fishstix.spl
+/opt/splunk/bin/./splunk install ../fishstix/fishstix.spl
 
