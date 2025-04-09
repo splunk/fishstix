@@ -41,10 +41,11 @@ spledis.py, spledis-llen.py (pip redis, splunklib)
 * _bug splunklib (https://github.com/splunk/splunk-sdk-python/issues/605)
 * workaround :
 * replace the default /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py 
-file with the following search_command.py from the bin directory
+file with the following bin/search_command.py to fix the following bug that prevents commands.conf chunked=true from being honored
 
-def process():
+
+_def process():
 ...
-self._process_protocol_v1 to **self._process_protocol_v2**  // this bug prevents chunked=true from being honored)
+self._process_protocol_v1 to **self._process_protocol_v2**  // this bug _
 
 
