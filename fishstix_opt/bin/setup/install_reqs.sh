@@ -17,7 +17,7 @@ echo "Install Docker, Redis server, pip redis"
 apt install docker.io
 apt install redis-server
 apt install redis-tools
-pip install redis
+pip install redis splunklib
 
 echo "This will install Microk8s version 1.32, setup current user for kubes and create the alias for kubectl"
 sudo snap install microk8s --classic --channel=1.32/stable
