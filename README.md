@@ -30,16 +30,18 @@ The setup runs in 4 steps:
 **Splunk: version 9.4+**
 
 **Microk8s/Docker:**
-splunk/splunk:latest (Splunk + pip redis w/ fxrestore.py)
-lokispundit/fxcopier:latest (Alpine + pip redis w/ fxcopier.py)
-Dockerfile also provided
+- splunk/splunk:latest (Splunk + pip redis w/ fxrestore.py)
+- lokispundit/fxcopier:latest (Alpine + pip redis w/ fxcopier.py)
+- Dockerfile also provided
 
 
 **Redis:**
-redis-server, redis-cli & redis.py (pip)
-spledis.py, spledis-llen.py (pip redis, splunklib)
-* _bug 
-* workaround :
-* replace the default /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py 
-file with the following bin/search_command.py to fix the splunklib (https://github.com/splunk/splunk-sdk-python/issues/605) bug that prevents commands.conf chunked=true from being honored correctly
+- redis-server, redis-tools & redis (via pip)
+- spledis.py, spledis-llen.py (pip redis, splunklib)
+
+**spledis.py**
+There is a bug in the splunklib code /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py (https://github.com/splunk/splunk-sdk-python/issues/605) that prevents chunked=true from working on custom python commands.
+
+workaround
+* replace the default /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py file with the provided modified bin/search_command.py file
 
