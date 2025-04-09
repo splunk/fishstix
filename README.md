@@ -31,7 +31,7 @@ The setup runs in 4 steps:
 
 **Microk8s/Docker:**
 - splunk/splunk:latest (Splunk + pip redis w/ fxrestore.py)
-- lokispundit/fxcopier:latest (Alpine + pip redis w/ fxcopier.py)
+- lokispundit/fxcopier:latest (Alpine + Python 3.11 to support shuttil recursive copy  + pip redis w/ fxcopier.py)
 - Dockerfile also provided
 
 
