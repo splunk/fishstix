@@ -41,7 +41,6 @@ The setup runs in 4 steps:
 
 **spledis.py**
 There is a bug in the splunklib code /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py (https://github.com/splunk/splunk-sdk-python/issues/605) that prevents chunked=true from working on custom python commands.
-
-workaround
+_workaround_
 * replace the default /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py file with the provided modified bin/search_command.py file
 
