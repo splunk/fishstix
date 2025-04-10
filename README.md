@@ -11,7 +11,7 @@ Upload your CSV inventory to the index=fx and using the provided sourcetype=fx_i
 CSV Schema:
 local path to data,
   file_size_bytes,
-    bucket_id,
+    bucket_id
       
 
 Example:
