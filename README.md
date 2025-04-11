@@ -11,7 +11,7 @@ Upload your CSV inventory to the index=fx and using the provided sourcetype=fx_i
 CSV Schema:
 local path to data,
   file_size_bytes,
-    bucket_id,
+    bucket_id
       
 
 Example:
@@ -21,16 +21,17 @@ Example:
 The setup runs in 4 steps:
 
 - Clone this repo
-- Run the bin/setup/install_reqs.sh to begin setup of the pre-requisite components
+- Run the bin/setup/**install_reqs.sh** to begin setup of the pre-requisite components
   - apt install docker.io
   - apt install redis-server
   - apt install redis-tools
   - pip install redis splunklib
   - Install Microk8s v 1.32
 - Logout and back into the host
-  - Continue the installation by logging back in and using the bin/setup_fishstix.sh to continue setup
+  - Continue the installation by logging back in and using the **bin/setup/setup_fishstix.sh** to continue setup
   - This will deploy all files to the **/opt/fishstix** directory
   - The will install the provided fishstix.spl file for the FishStix Splunk App
+
 **Components required**
 
 **Splunk: version 9.4+**
@@ -40,13 +41,13 @@ The setup runs in 4 steps:
 - lokispundit/fxcopier:latest (Alpine + Python 3.11 to support shuttil recursive copy feature  + pip redis w/ fxcopier.py)
 - Dockerfile also provided
 
-
 **Redis:**
 - redis-server, redis-tools & redis (via pip)
 - spledis.py, spledis-llen.py (pip redis, splunklib)
 
 **spledis.py**
-There is a bug in the splunklib code /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py (https://github.com/splunk/splunk-sdk-python/issues/605) that prevents chunked=true from working on custom python commands.
+    There is a bug in the splunklib code /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py (https://github.com/splunk/splunk-sdk-python/issues/605) that prevents chunked=true from working on custom python commands.
+
 _workaround_
 * replace the default /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py file with the provided modified bin/search_command.py file
 
