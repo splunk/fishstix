@@ -17,11 +17,11 @@ sudo touch /opt/fishstix/logs/fxcopier.log
 sudo touch /opt/fishstix/logs/fxrestore.log
 
 #copy bins/yamls
-sudo cp -R fishstix_opt/bin /opt/fishstix/bin
-sudo cp -R fishstix_opt/yaml /opt/fishstix/yaml
+sudo cp -R /home/splunker/fishstix_opt/ /opt/fishstix/
+
 
 #patch the bug
-sudo cp fishstix/bin/search_command.py /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py
+sudo cp /home/splunker/fishstix_opt/bin/search_command.py /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py
 
 #create Kubernetes namespace called splunk ,configure overall context and set as default
 echo "Creating Kubernetes: setting configurations and defaults"
@@ -34,11 +34,11 @@ kubectl config view --raw > ~/.kube/config
 echo "Applying YAML configurations:"
 echo "..."
 echo "Applying YAML - fxcopier x 12 pods""
-kubectl apply -f ../yaml/fxcopier.yaml
+kubectl apply -f /opt/fishstix/yaml/fxcopier.yaml
 #Load Balancer for outbound facing TCP/32740 & containers on TCP/8089
 echo "Applying YAML - fxrestore x 15 pods"
-kubectl apply -f ../yaml/fxrestore.yaml
+kubectl apply -f /opt/fishstix/yaml/fxrestore.yaml
 
 echo "Applying FishStix SPL app"
-/opt/splunk/bin/./splunk install ../fishstix/fishstix.spl
+/opt/splunk/bin/./splunk install /home/splunker/fishstix/fishstix.spl
 

@@ -160,5 +160,5 @@ CMD ["python3"]
 RUN pip install redis
 
 COPY fxcopier.py /opt/fxcopier.py
-
-CMD  python /opt/fxcopier.py 10.202.34.225
+COPY fxcopier.conf /opt/fxcopier.conf
+CMD  python /opt/fxcopier.py 

@@ -21,10 +21,10 @@ pip install redis splunklib
 
 #Modify the redis.conf file
 echo "Redis-Server needs to be configured locally"
-echo "open the /etc/redis/redis.conf and set the bind address to the IP of this host and change protected mode from yes to no"
+echo "please open the /etc/redis/redis.conf and set the bind address to the local IP of this host and change protected mode from yes to no"
+sleep 5s
 echo "restart Redis service"
 service redis-server status
-sleep 2s
 
 echo "This will install Microk8s version 1.32, setup current user for kubes and create the alias for kubectl"
 sudo snap install microk8s --classic --channel=1.32/stable

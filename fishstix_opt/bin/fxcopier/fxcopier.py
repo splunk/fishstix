@@ -12,6 +12,7 @@ import os
 import sys
 import shutil
 import datetime
+import configparser
 
 
 class workqueue(object):
@@ -171,13 +172,25 @@ def copy_directory_overwrite(source_dir, bucket_id, restored_index_name):
 
 
 if __name__ == "__main__":
-    host = sys.argv[1]
+    
+    # Read the local config                                                  
+    config = configparser.ConfigParser()
+    config.read('fxcopier.conf')          
+
+    # Accessing values
+    redis_host = config.get('config', 'redis_host')
+    log_file = config.get('config', 'log_file')
+    queue_name = config.get('config', 'workqueue')
+
+    q = workqueue(name=queue_name, host=redis_host)
+    
+    
     SPLUNK_HOME=get_env()
     scriptpath = "/opt/fishstix"
     sys.path.append(os.path.abspath(scriptpath))
-    log_file = "/opt/fishstix/logs/fxcopier.log"
 
-    q = workqueue(name="copyqueue", host=host)
+
+    q = workqueue(name=queue_name, host=redis_host)
     message1 = str("Worker with sessionID: " +  q.sessionID())
     message2 = str("Initial queue state: empty=" + str(q.empty()))
     while not q.empty():

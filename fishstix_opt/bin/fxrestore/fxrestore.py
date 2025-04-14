@@ -1,15 +1,20 @@
-    #!/usr/bin/env python
-import zstandard
-import io
-import re
-import sys
+#!/usr/bin/env python
+
+# Based on http://peter-hoffmann.com/2012/python-simple-queue-redis-queue.html
+# and the suggestion in the redis documentation for RPOPLPUSH, at
+# http://redis.io/commands/rpoplpush, which suggests how to implement a work-queue.
+
+
 import redis
 import uuid
 import hashlib
+import os
+import sys
+import subprocess
 import datetime
+import configparser
 
 
-    
 class workqueue(object):
     """Simple Finite Work Queue with Redis Backend
 
@@ -26,7 +31,7 @@ class workqueue(object):
        """The default connection parameters are: host='localhost', port=6379, db=0
 
        The work queue is identified by "name".  The library may create other
-       keys with "name" as a prefix. 
+       keys with "name" as a prefix.
        """
        self._db = redis.StrictRedis(**redis_kwargs)
        # The session ID will uniquely identify this "worker".
@@ -56,6 +61,21 @@ class workqueue(object):
         """
         return self._main_qsize() == 0 and self._processing_qsize() == 0
 
+# TODO: implement this
+#    def check_expired_leases(self):
+#        """Return to the work queueReturn True if the queue is empty, False otherwise."""
+#        # Processing list should not be _too_ long since it is approximately as long
+#        # as the number of active and recently active workers.
+#        processing = self._db.lrange(self._processing_q_key, 0, -1)
+#        for item in processing:
+#          # If the lease key is not present for an item (it expired or was
+#          # never created because the client crashed before creating it)
+#          # then move the item back to the main queue so others can work on it.
+#          if not self._lease_exists(item):
+#            TODO: transactionally move the key from processing queue to
+#            to main queue, while detecting if a new lease is created
+#            or if either queue is modified.
+
     def _itemkey(self, item):
         """Returns a string that uniquely identifies an item (bytes)."""
         return hashlib.sha224(item).hexdigest()
@@ -65,7 +85,7 @@ class workqueue(object):
         return self._db.exists(self._lease_key_prefix + self._itemkey(item))
 
     def lease(self, lease_secs=60, block=True, timeout=None):
-        """Begin working on an item the work queue. 
+        """Begin working on an item the work queue.
 
         Lease the item for lease_secs.  After that time, other
         workers may consider this client to have crashed or stalled
@@ -110,80 +130,75 @@ def log(log_file, content):
       content = content + "\n"
       file.write(str(time + content))
 
-def check_zst_header(filename):
-    with open(filename, 'rb') as f:
-        magic_number = f.read(4)  # Read the first 4 bytes (magic number)
-        if magic_number == b"\x28\xB5\x2F\xFD":
-            valid_zstd_header = "true"
-            message = "The zst is valid = " + valid_zstd_header
-            log(log_file, message)
-        else:
-            valid_zstd_header = "false"
-            message = "The zst is NOT valid" + valid_zstd_header
-            log(log_file, message)
-        # Read the first 15 bytes to inspect additional header information
-        header_data = f.read(15)
-        header_hex = (header_data.hex())
-        return valid_zstd_header, header_hex
+
+#Get environment vars for SPLUNK_HOME
+def get_env():
+    SPLUNK_HOME = os.environ.get("SPLUNK_HOME")
+    if SPLUNK_HOME is None:
+        SPLUNK_HOME = "/opt/splunk/"
+    return SPLUNK_HOME
+
 
 def assign_vars(itemstr):
     itemstr = itemstr.split(",")
     for x in itemstr:
         if '/mnt' in x:
             source_dir = str(x).strip("[]'' ")
-            log(log_file,str("Source Directory: " + source_dir))
+            message1 = str("Source Directory: " + source_dir)
+            log(log_file,message1)
         elif 'db_' in x:
             bucket_id = str(x).strip("[]'' ")
-            log(log_file,str("Bucket Id:" + bucket_id))
+            message2 = str("Bucket Id:" + bucket_id)
+            log(log_file,message2)
         elif "restored" in x:
             restored_index_name = str(x).strip("[]'' ")
-            message = ("Destination Index: " + restored_index_name)
+            message3 = str("Destination Index: " + restored_index_name)
+            log(log_file,message3)
             destination_dir = "/mnt/data/" + restored_index_name +"/thaweddb/" + bucket_id
-            message2 =("Destination Directory:" + destination_dir)
-            log(log_file, message)
-            log(log_file, message2)
+            message4 = str("Destination Directory:" + destination_dir)
+            log(log_file,message4)
             return source_dir, bucket_id, restored_index_name
 
-
-def search_zst_beginning(err,filename):
-    enc = ["utf-8", "ascii", "unicode_escape"]
-    for y in enc:
-        fh = open(filename,'rb')
-        dctx = zstandard.ZstdDecompressor()
-        stream_reader = dctx.stream_reader(fh,read_size=4096) 
-        text_stream = io.TextIOWrapper(stream_reader, encoding=str(y), newline='\n', errors=str(err))
-        first_x_bytes = text_stream.readlines(1024)
-        for x in first_x_bytes:
-            printable = x.isprintable()
-            log(log_file, str("DEBUG encoding_option="+str(y)+" errors="+str(err)+" is_printable="+str(printable) +" events="+ str(x)))
-            r  = re.search("host::(.{1,50})source::(.{1,50})sourcetype::(.{1,50})\s+",x)
-            if r is not None:
-               host = str(r.group(1))
-               source = str(r.group(2))
-               sourcetype = str(r.group(3))
-               message = (filename+","+host+","+source+","+sourcetype)
-               log(log_file, message) 
-            else:
-               pass
+#Generic command for shell
+def run_command(cmd):
+    bufsize = 10240
+    process = subprocess.check_output(cmd, shell=True,bufsize=bufsize)
+    output = process.decode('utf-8').strip('\n')
+    log(log_file,output)
+    return output
 
 
 if __name__ == "__main__":
-     err = ["ignore", "replace", "backslashreplace"]
-     log_file="/opt/fishstix/logs/gofishing.log"  
-     q = workqueue(name="fishingqueue", host=sys.argv[1])
-     message1 = str("Worker with sessionID: " +  q.sessionID())
-     log(log_file,message1)
-     message2 = str("Initial queue state: empty=" + str(q.empty()))
-     log(log_file,message2)
+    SPLUNK_HOME=get_env()
+    # Read the local config                                                  
+    config = configparser.ConfigParser()
+    config.read('fxrestore.conf')          
 
+    # Accessing values
+    redis_host = config.get('config', 'redis_host')
+    log_file = config.get('config', 'log_file')
+    queue_name = config.get('config', 'workqueue')
 
-     while not q.empty():
-         item = q.lease(lease_secs=10, block=True, timeout=2) 
-         if item is not None:
-             itemstr = item.decode("utf-8")
-             source_dir, bucket_id, restored_index_name = assign_vars(itemstr)
-             journal_file = source_dir+"/journal.zst"
-             check_zst_header(journal_file)
-             for x in err:
-                 search_zst_beginning(x,journal_file) 
-             q.complete(item)
+    q = workqueue(name=queue_name, host=redis_host)
+    
+    scriptpath = "/opt/fishstix/"
+    sys.path.append(os.path.abspath(scriptpath))
+
+    q = workqueue(name=queue_name, host=redis_host)
+    message5 = str("Worker with sessionID: " +  q.sessionID())
+    message6 = str("Initial queue state: empty=" + str(q.empty()))
+    log(log_file,message5)
+    log(log_file,message6)
+    while not q.empty():
+        item = q.lease(lease_secs=10, block=True, timeout=2)
+        if item is not None:
+            itemstr = item.decode("utf-8")
+            source_dir, bucket_id, restored_index_name = assign_vars(itemstr)
+            command_tbr= "sudo "+ SPLUNK_HOME + "/bin/./splunk rebuild " + "/mnt/data/"+restored_index_name+"/thaweddb/"+bucket_id
+            message7 = str(command_tbr)
+            log(log_file,message7)
+            run_command(command_tbr)
+            q.complete(item)
+        else:
+         log(log_file,str("Waiting for work"))
+         log(log_file,str("Queue empty, exiting"))
