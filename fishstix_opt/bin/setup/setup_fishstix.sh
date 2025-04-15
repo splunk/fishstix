@@ -36,7 +36,7 @@ echo "..."
 echo "Applying YAML - fxcopier x 12 pods""
 kubectl apply -f /opt/fishstix/yaml/fxcopier.yaml
 #Load Balancer for outbound facing TCP/32740 & containers on TCP/8089
-echo "Applying YAML - fxrestore x 15 pods"
+echo "Applying YAML - fxrestore x 5 pods"
 kubectl apply -f /opt/fishstix/yaml/fxrestore.yaml
 
 echo "Applying FishStix SPL app"
