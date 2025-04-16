@@ -48,6 +48,6 @@ The setup runs in 4 steps:
 - spledis.py, spledis-llen.py (pip redis, splunklib, splunk-sdk)
 
 **spledis.py**
-    There is a bug in the splunklib code /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py () that prevents chunked=true from working on custom python commands.
-    patched search_command.py file provided
+- There is a bug in the splunklib code /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py that prevents chunked=true from working on custom python commands.
+- patched search_command.py file provided
 
