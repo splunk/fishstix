@@ -172,7 +172,7 @@ if __name__ == "__main__":
     SPLUNK_HOME=get_env()
     # Read the local config                                                  
     config = configparser.ConfigParser()
-    config.read('fxrestore.conf')          
+    config.read('/opt/fishstix/bin/fxrestore/fxrestore.conf')          
 
     # Accessing values
     redis_host = config.get('config', 'redis_host')
