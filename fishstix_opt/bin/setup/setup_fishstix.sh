@@ -3,32 +3,41 @@
 # Kate Lawrence-Gupta - Principal Platform Architect
 # https://github.com/splunk/fishstix
 
-#Requirements
-echo "FishStix requires the following; Splunk, Docker, Redis-Server/Tools & pip redis"
+#Enable Microk8s DNS & Host-path Storage
+echo "Enabling Microk8s: DNS & Host-path Storage"
+echo "..."
+sudo microk8s enable dns storage 
 
-if test -f "/opt/splukn/bin"; then
-  echo "Splunk is installed."
-else
-  echo "Please install Splunk first"
-fi
+#create directories needed
+echo "Creating directories: /opt/fishstix and moving folders"
+echo "..."
+sudo mkdir /opt/fishstix
+sudo mkdir /opt/fishstix/logs
+sudo touch /opt/fishstix/logs/fxcopier.log
+sudo touch /opt/fishstix/logs/fxrestore.log
 
-#Install the additional required software
-echo "Install Docker, Redis server, pip redis"
-sudo apt install docker.io
-sudo apt install redis-server
-sudo apt install redis-tools
-sudo pip install redis splunklib splunk-sdk
+#copy bins/yamls
+sudo cp -R /home/splunker/fishstix/fishstix_opt/bin /opt/fishstix/bin
+sudo cp -R /home/splunker/fishstix/fishstix_opt/yaml /opt/fishstix/yaml
 
-#Modify the redis.conf file
-echo "Redis-Server needs to be configured locally"
-echo "please open the /etc/redis/redis.conf and set the bind address to the local IP of this host and change protected mode from yes to no"
-sleep 5s
-echo "restart Redis service"
-service redis-server status
+#patch the bug
+sudo cp /home/splunker/fishstix/fishstix_opt/bin/setup/search_command.py /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py
 
-echo "This will install Microk8s version 1.32, setup current user for kubes and create the alias for kubectl"
-sudo snap install microk8s --classic --channel=1.32/stable
-sudo usermod -a -G microk8s splunker
-sudo chown -f -R splunker ~/.kube
-sudo snap alias microk8s.kubectl kubectl
-echo "logout now and back in to continue setup with setup_fishstix.sh"
+#create Kubernetes namespace called splunk ,configure overall context and set as default
+echo "Creating Kubernetes: setting configurations and defaults"
+echo "..."
+sudo kubectl create ns splunk
+sudo kubectl config set-context --current --namespace=splunk
+sudo kubectl config view --raw > ~/.kube/config
+
+#apply the yaml files in the following order to create a TCP configmap
+echo "Applying YAML configurations:"
+echo "..."
+echo "Applying YAML - fxcopier x 12 pods"
+sudo kubectl apply -f /opt/fishstix/yaml/fxcopier.yaml
+#Load Balancer for outbound facing TCP/32740 & containers on TCP/8089
+echo "Applying YAML - fxrestore x 5 pods"
+sudo kubectl apply -f /opt/fishstix/yaml/fxrestore.yaml
+
+echo "Applying FishStix SPL app"
+sudo /opt/splunk/bin/./splunk install /home/splunker/fishstix/fishstix.spl
