@@ -17,7 +17,7 @@ echo "Install Docker, Redis server, pip redis"
 sudo apt install docker.io
 sudo apt install redis-server
 sudo apt install redis-tools
-sudo pip install redis splunklib
+sudo pip install redis splunklib splunk-sdk
 
 #Modify the redis.conf file
 echo "Redis-Server needs to be configured locally"
