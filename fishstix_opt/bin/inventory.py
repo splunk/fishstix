@@ -21,7 +21,7 @@ def get_fsize(filename):
 
 
 if __name__ == "__main__":
-    print("Mount your frozen buckets to /mnt/frozen_buckets and run this script > .csv to create a new inventory file"
+    print("Mount your frozen buckets to /mnt/frozen_buckets and run this script > .csv to create a new inventory file")
     print("absolute_path,file_size_bytes,bucket_id")
     target_directory = "/mnt/frozen_buckets"
     file_to_find = "journal.zst"
