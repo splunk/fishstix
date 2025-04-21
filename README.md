@@ -25,12 +25,14 @@ The setup runs in 4 steps:
   - apt install docker.io
   - apt install redis-server
   - apt install redis-tools
-  - pip install redis splunklib
-  - Install Microk8s v 1.32
+  - pip install redis splunklib splunk-sdk
+  - Install Microk8s v 1.32 & logout
 - Logout and back into the host
   - Continue the installation by logging back in and using the **bin/setup/setup_fishstix.sh** to continue setup
   - This will deploy all files to the **/opt/fishstix** directory
-  - The will install the provided fishstix.spl file for the FishStix Splunk App
+  - Patched file search_command.py to address bug with the splunk-sdk  (https://github.com/splunk/splunk-sdk-python/issues/605)
+  - Install the provided fishstix.spl file for the FishStix Splunk App
+  - Start the fxcopier and fxrestore pods
 
 **Components required**
 
@@ -39,15 +41,13 @@ The setup runs in 4 steps:
 **Microk8s/Docker:**
 - splunk/splunk:latest (Splunk + pip redis w/ fxrestore.py)
 - lokispundit/fxcopier:latest (Alpine + Python 3.11 to support shuttil recursive copy feature  + pip redis w/ fxcopier.py)
-- Dockerfile also provided
+- Dockerfile also provided along with build.sh 
 
 **Redis:**
 - redis-server, redis-tools & redis (via pip)
-- spledis.py, spledis-llen.py (pip redis, splunklib)
+- spledis.py, spledis-llen.py (pip redis, splunklib, splunk-sdk)
 
 **spledis.py**
-    There is a bug in the splunklib code /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py (https://github.com/splunk/splunk-sdk-python/issues/605) that prevents chunked=true from working on custom python commands.
-
-_workaround_
-* replace the default /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py file with the provided modified bin/search_command.py file
+- There is a bug in the splunklib code /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py that prevents chunked=true from working on custom python commands.
+- patched search_command.py file provided
 
