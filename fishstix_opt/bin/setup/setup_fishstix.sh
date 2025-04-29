@@ -17,8 +17,8 @@ sudo touch /opt/fishstix/logs/fxcopier.log
 sudo touch /opt/fishstix/logs/fxrestore.log
 
 #copy bins/yamls
-sudo cp -R /home/splunker/fishstix/fishstix_opt/bin /opt/fishstix/bin
-sudo cp -R /home/splunker/fishstix/fishstix_opt/yaml /opt/fishstix/yaml
+sudo cp -R /home/splunker/fishstix/fishstix_opt/bin /opt/fishstix/
+sudo cp -R /home/splunker/fishstix/fishstix_opt/yaml /opt/fishstix/
 
 #patch the bug
 sudo cp /home/splunker/fishstix/fishstix_opt/bin/setup/search_command.py /usr/local/lib/python3.10/dist-packages/splunklib/searchcommands/search_command.py
