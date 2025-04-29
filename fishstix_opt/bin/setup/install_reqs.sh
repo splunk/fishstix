@@ -14,6 +14,7 @@ fi
 
 #Install the additional required software
 echo "Install Docker, Redis server, pip redis"
+sudo apt install nano
 sudo apt install docker.io
 sudo apt install redis-server
 sudo apt install redis-tools
