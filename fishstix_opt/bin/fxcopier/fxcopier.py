@@ -175,7 +175,7 @@ if __name__ == "__main__":
     
     # Read the local config                                                  
     config = configparser.ConfigParser()
-    config.read('/opt/fxcopier.conf')          
+    config.read('fxcopier.conf')          
 
     # Accessing values
     redis_host = config.get('config', 'redis_host')
