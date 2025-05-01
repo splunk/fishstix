@@ -3,7 +3,7 @@ echo "Installing pre-requsites for FishStix install_reqs.sh"
 sudo sh fishstix_opt/bin/setup/install_reqs.sh
 sudo sh fishstix_opt/bin/setup/mk8.sh
 
-if test -f "fishstix_opt/bin/setup/.placeholder"; then
+if test -f "fishstix_opt/setup/.placeholder"; then
   echo "Picking up where we left off...setup_fishstix.sh"
   sleep 1s
   sudo sh fishstix_opt/bin/setup/setup_fishstix.sh
