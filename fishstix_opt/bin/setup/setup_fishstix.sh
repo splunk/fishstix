@@ -31,7 +31,7 @@ sudo kubectl config set-context --current --namespace=splunk
 sudo kubectl config view --raw > ~/.kube/config
 
 #apply the yaml files in the following order to create a TCP configmap
-echo Creating Pods:"
+echo "Creating Pods:"
 echo "..."
 
 echo "Applying FXCopier YAML - fxcopier x 12 pods"
@@ -44,3 +44,4 @@ echo "..."
 
 echo "Applying FishStix SPL app"
 sudo /opt/splunk/bin/./splunk install app /home/splunker/fishstix/fishstix.spl
+sudo /opt/splunk/bin/./splunk restart
