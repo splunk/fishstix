@@ -18,26 +18,27 @@ Example:
 /mnt/data/frozen_buckets/index4/db_1726679943_1726679518_418,10240,db_1726679943_1726679518_418
 
 **Installer**
-The setup runs in 4 steps:
-
 - Clone this repo
-- Run the bin/setup/**install_reqs.sh** to begin setup of the pre-requisite components
+Run the fishstix_opt/**install_fishstix.sh** script to start the FishStix Installer
+This will run bin/setup/_install_reqs.sh_ and install all pre-requisite components listed
+  - apt install nano
   - apt install docker.io
   - apt install redis-server
   - apt install redis-tools
   - pip install redis splunklib splunk-sdk
   - Install Microk8s v 1.32 & logout
 - Logout and back into the host
-  - Continue the installation by logging back in and using the **bin/setup/setup_fishstix.sh** to continue setup
-  - This will deploy all files to the **/opt/fishstix** directory
-  - Patched file search_command.py to address bug with the splunk-sdk  (https://github.com/splunk/splunk-sdk-python/issues/605)
-  - Install the provided fishstix.spl file for the FishStix Splunk App
-  - Start the fxcopier and fxrestore pods
-
-**Components required**
-
-**Splunk: version 9.4+**
-
+Continue the installation by logging back in and running the **install_fishstix.sh** again to complete setup
+  - runs the _setup_fishstix.sh_ script to
+      - deploy all files to the **/opt/fishstix** directory
+      - Patch file search_command.py to address bug with the splunk-sdk  (https://github.com/splunk/splunk-sdk-python/issues/605)
+      - Install the provided fishstix.spl file for the FishStix UI
+  - runs the _finish_config.sh_ script to prompt the installer for completing the Redis config changes to:
+      - /etc/redis/redis.conf
+      - /opt/fishstix/fxcopier.conf
+      - /opt/fishstix/fxrestore.conf
+      - Restart Redis & ensure it's listening on the IP that was set
+    
 **Microk8s/Docker:**
 - splunk/splunk:latest (Splunk + pip redis w/ fxrestore.py)
 - lokispundit/fxcopier:latest (Alpine + Python 3.11 to support shuttil recursive copy feature  + pip redis w/ fxcopier.py)
