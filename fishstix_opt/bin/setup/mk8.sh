@@ -4,5 +4,5 @@ sudo snap install microk8s --classic --channel=1.32/stable
 sudo usermod -a -G microk8s splunker
 sudo chown -f -R splunker ~/.kube
 sudo snap alias microk8s.kubectl kubectl
-touch .placeholder
+touch .mk8s
 echo "logout now and back in to continue setup with setup_fishstix.sh"
