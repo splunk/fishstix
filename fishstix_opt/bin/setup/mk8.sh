@@ -5,4 +5,4 @@ sudo usermod -a -G microk8s splunker
 sudo chown -f -R splunker ~/.kube
 sudo snap alias microk8s.kubectl kubectl
 touch .mk8s
-echo "logout now and back in to continue setup with setup_fishstix.sh"
+echo "logout now and back in to continue the install with install_fishstix.sh"
