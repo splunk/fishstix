@@ -10,5 +10,6 @@ if test -f ".mk8s"; then
   sudo sh fishstix_opt/bin/setup/setup_fishstix.sh
   echo "Finishing setup - please configure Redis"
   sudo sh fishstix_opt/bin/setup/finish_config.sh
-else
+fi
   echo "Please run the mk8s.sh first"
+  
