@@ -55,17 +55,20 @@ def configure_k8s():
     os.system(k8_config_view)
 
 def configure_fishstix(user):
+    mkdir_fbuckets = str("sudo mkdir /mnt/frozen_buckets")
     fx_mkdir = str("sudo mkdir /opt/fishstix")
     fx_mkdir_logs = str("sudo mkdir /opt/fishstix/logs")
-    fx_copy_log = str("sudo touch /opt/fishstix/logs/fxcopier.log")
-    fx_restore_log = str("sudo touch /opt/fishstix/logs/fxrestore.log")
-    fx_copy_log = str("sudo cp -R /home/"+user+"/fishstix/fishstix_opt/bin /opt/fishstix/")
-    fx_restore_log = str("sudo cp -R /home/"+user+"/fishstix/fishstix_opt/yaml /opt/fishstix/")
+    fx_create_copy_log = str("sudo touch /opt/fishstix/logs/fxcopier.log")
+    fx_create_restore_log = str("sudo touch /opt/fishstix/logs/fxrestore.log")
+    fx_copy_bin = str("sudo cp -R /home/"+user+"/fishstix/fishstix_opt/bin /opt/fishstix/")
+    fx_copy_yaml = str("sudo cp -R /home/"+user+"/fishstix/fishstix_opt/yaml /opt/fishstix/")
+    os.system(mkdir_fbuckets)
     os.system(fx_mkdir)
     os.system(fx_mkdir_logs)
-    os.system(fx_copy_log)
-    os.system(fx_restore_log)
-
+    os.system(fx_create_copy_log)
+    os.system(fx_create_restore_log)
+    os.system(fx_copy_bin)
+    os.system(fx_copy_yaml)
 
 
 def configure_fxcopier_redis(ip_address):
@@ -102,8 +105,6 @@ def configure_spledis(ip_address):
     config.set(section_name, key_name, new_value)
     with open(fxrestore, 'w') as configfile:
         config.write(configfile)
-
-
 
 
 def configure_splunk(user,ip_address):
